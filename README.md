@@ -1,6 +1,6 @@
 ﻿<div align="center">
   <a href="https://aeonsage.org">
-    <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/opensage_Banner_logo.svg" alt="AEONSAGE OS" width="100%" loading="eager">
+    <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/aeonsage_Banner.svg" alt="AEONSAGE OS" width="100%" loading="eager">
   </a>
   <br>
   
@@ -23,6 +23,15 @@
 
 > **"Identity first. Intelligence second. Tooling third."**
 
+### 1. The Sovereign Kernel (Ring 0)
+The absolute core of the system.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/opensage_Banner_logo.svg" alt="OpenSage Kernel" width="400">
+</p>
+
+*   **Determinsitic State Machine**: Manages the agent's lifecycle, memory context, and permission boundaries.
+*   **Active Defense Wall**: A heuristic security layer that intercepts prompt injection and jailbreak attempts before they reach the model.
+*   **Audit Logger**: Immutable recording of every high-stakes decision.
 In the current landscape of stochastic AI agents, **identity is an afterthought**. Models hallucinate, leak context, and operate without accountability.
 
 **AeonSage** reverses this paradigm. It is an Operating System where **Identity (VDID)** is the kernel-level primitive. Before any cognitive routing occurs, the origin, intent, and permissions of the request are verified against a sovereign ledger.
@@ -36,7 +45,15 @@ This is not a chatbot. It is a **Deterministic Runtime Environment** for verifie
 AeonSage implements a strict **Kernel-Ring Architecture**, enforcing separation between the cognitive core and external I/O.
 
 ### 2.1 The Sovereign Transformation
-AeonSage acts as a **Deterministic Runtime** that stabilizes the entropy of raw LLMs.
+AeonSage acts as a **Deterministic Runtime** that stabilizes the entropy of raw LLMs via the **OpenSage Kernel**.
+
+<p align="center">
+  <a href="https://github.com/velonone/Opensage">
+    <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/opensage_Banner_logo.svg" alt="OpenSage Core" width="300">
+  </a>
+  <br>
+  [![Core](https://img.shields.io/badge/KERNEL-OpenSage_v1.0-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/velonone/Opensage)
+</p>
 
 ```mermaid
 graph LR
@@ -187,4 +204,3 @@ Collaborating to build the Sovereign Web.
   <br>
   <img src="https://img.shields.io/badge/Status-Active_Development-blue?style=flat-square" alt="Status">
 </div>
-

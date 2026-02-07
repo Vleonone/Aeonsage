@@ -34,6 +34,11 @@
 AeonSage 采用严格的 **内核环 (Kernel-Ring) 架构**，强制实现认知核心与外部 I/O 的安全隔离。
 
 ### 2.1 主权转换 (Sovereign Transformation)
+<p align="center">
+  <a href="https://github.com/velonone/Opensage">
+    <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/opensage_Banner_logo.svg" alt="OpenSage Core" width="400">
+  </a>
+</p>
 AeonSage 作为一个**确定性运行时 (Deterministic Runtime)**，将原始大模型的无序熵转化为有序的主权智能。
 
 ```mermaid
