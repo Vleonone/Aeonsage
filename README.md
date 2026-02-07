@@ -1,127 +1,107 @@
 ﻿<div align="center">
-
-<img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/aeonsage_Banner.svg" alt="AEONSAGE" width="100%" loading="eager">
-
-**The Deterministic Foundation for Autonomous Agency**
-
-**A Joint Release by VelonLabs & @Aeonsage**
-
-<p>
-  <a href="https://aeonsage.org">Official Site</a> •
-  <a href="https://docs.aeonsage.org">Technical Documentation</a> •
-  <a href="https://pro.aeonsage.org">Enterprise Solutions</a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/velonone/Aeonsage/releases/latest/download/AeonSage_OSS.zip">
-    <img src="https://img.shields.io/badge/Download-Windows_x64-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows">
-  </a>
-  <a href="https://www.npmjs.com/package/aeonsage">
-    <img src="https://img.shields.io/badge/Install-NPM_Global-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="Install via NPM">
-  </a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Version-2026.1.30-blue?style=flat-square" alt="Version">
-  <img src="https://img.shields.io/badge/Node-v22+-green?style=flat-square&logo=node.js" alt="Node Version">
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-gray?style=flat-square" alt="License"></a>
-  <a href="./docs/security.md"><img src="https://img.shields.io/badge/VDID-Verified_Identity-E8471C?style=flat-square&logo=fingerprint&logoColor=white" alt="VDID"></a>
-  <a href="./README_ZH.md"><img src="https://img.shields.io/badge/Language-中文文档-red?style=flat-square" alt="Chinese"></a>
-</p>
-
+  <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/aeonsage_Banner.svg" alt="AEONSAGE" width="100%" loading="eager">
 </div>
+
+# AeonSage Sovereign Intelligence OS
+
+**AeonSage** is the world's most capable sovereign agent operating system. It connects localized, deterministic intelligence to over **20+ communication platforms** and **50+ external services**, allowing you to extend your agency across the entire digital spectrum.
+
+Unlike simple chatbots, AeonSage runs as a persistent kernel on your own infrastructure (or laptop), verifying every action through your **Sovereign Identity (VDID)**.
+
+| **Latest Release** | **License** | **Documentation** | **Enterprise** |
+| :--- | :--- | :--- | :--- |
+| v2026.1.30 | MIT | [docs.aeonsage.org](https://docs.aeonsage.org) | [pro.aeonsage.org](https://pro.aeonsage.org) |
 
 ---
 
-# 🌌 The Sovereign Intelligence OS
+## 🌐 The Connectivity Matrix
 
-> **Not just a chatbot. A verifiable extension of your will.**
+AeonSage natively bridges your intelligence to the networks you use every day. **No third-party SaaS required.**
 
-**AeonSage** is a comprehensive Operating System for Sovereign Intelligence. Unlike traditional AI assistants that operate as stochastic parrots, AeonSage introduces a **deterministic cognitive layer**, ensuring that your agent's actions are verified, secure, and uniquely aligned with your identity.
+| **Category** | **Platform** | **Status** | **Capabilities** |
+| :--- | :--- | :---: | :--- |
+| **Global IM** | **WhatsApp** | ✅ | Full bridge via `wacli` / Baileys |
+| | **Telegram** | ✅ | Native MTProto / Bot API |
+| | **Signal** | ✅ | End-to-End Encrypted messaging |
+| | **iMessage** | ✅ | Via BlueBubbles relay |
+| | **Line** / **Zalo** | ✅ | Asia-Pacific regional support |
+| **Enterprise** | **Slack** | ✅ | Threads, blocks, file analysis |
+| | **Discord** | ✅ | Slash commands, voice ops |
+| | **MS Teams** | ✅ | Org-wide integration |
+| | **Mattermost** | ✅ | Self-hosted secure chat |
+| **Decentralized**| **Matrix** | ✅ | Federation support |
+| | **Nostr** | ✅ | Relay publishing & DM |
+| **Social/Live** | **Twitch** | ✅ | Chat monitoring & moderating |
+| | **Google Chat** | ✅ | Workspace integration |
 
-Designed for: **Developers, Enterprises, and Sovereign Individuals.**
+---
+
+## ⚡ Capability Extensions (Skills)
+
+AeonSage comes pre-loaded with over **50+ deterministic skills**.
+
+### 💻 Engineering & DevOps
+*   **GitHub**: Manage repositories, review PRs, issue triage.
+*   **1Password**: Securely access secrets for deployment ops.
+*   **Tmux**: Control persistent terminal sessions remotely.
+*   **Oracle / SQL**: Database administration and querying.
+*   **Docker**: Container management.
+
+### 🧠 Knowledge & Productivity
+*   **Notion \ Trello**: Reading pages, updating Kanban boards.
+*   **Obsidian \ Apple Notes**: Syncing thoughts to your second brain.
+*   **Google \ Perplexity**: Deep research and real-time fact checking.
+*   **NanoPDF**: Parsing and understanding complex documents.
+
+### 🎨 Media & Lifestyle
+*   **Spotify \ Sonos**: Control home audio and playback.
+*   **Apple Reminders**: Managing your GTD stack.
+*   **Food Order**: Interfaces for delivery services.
+*   **Video Frames**: Analyzing video content frame-by-frame.
+*   **OpenHue**: Controlling smart home lighting.
+
+---
+
+## 🏛️ Sovereign Architecture
+
+AeonSage is not a script; it is a **Kernel**.
+
+1.  **The Sovereign Kernel**: A deterministic loop that manages memory, context, and execution permissions.
+2.  **Cognitive Router**: A multi-model inference engine that dynamically routes intent to the most cost-effective and capable model (e.g., routing coding tasks to Claude 3.5, chat to Llama 3).
+3.  **Active Defense**: Real-time prompt injection filtering and behavioral firewalls.
+
+---
+
+## 📦 Edition Comparison
+
+| Features | **Community Edition (OSS)** | **Professional Edition (PRO)** |
+| :--- | :---: | :---: |
+| **License** | Open Source (MIT) | Commercial / Enterprise |
+| **Deployment** | Local / Docker | High-Availability Cluster |
+| **Identity** | Local VDID | **Global Federated VDID** |
+| **Telephony** | SIP / WebRTC Basic | **Carrier-Grade Trunking** |
+| **Security** | Standard Rules | **Heuristic Zero-Day Defense** |
+| **Trading** | Public APIs | **Nexus Ultra-Low Latency** |
+| **Support** | GitHub Issues | **Dedicated SLA** |
 
 ---
 
 ## 🚀 Instant Deployment
 
 ### **Windows (Portable)**
-Zero installation required.
-1. [**Download AeonSage v2026.1 OSS**](https://github.com/velonone/Aeonsage/releases/latest/download/AeonSage_OSS.zip)
+Zero installation.
+1. Download **[AeonSage_OSS.zip](https://github.com/velonone/Aeonsage/releases/latest/download/AeonSage_OSS.zip)** from Releases.
 2. Unzip and run `AeonSage.bat`.
 
 ### **macOS / Linux / WSL**
-Accessible via standard NPM registry.
-```bash
-# Requires Node.js v22+
-npm install -g aeonsage
+Requires Node.js v22+.
 
-# Initialize your sovereign instance
+```bash
+npm install -g aeonsage
 aeonsage init
 ```
 
 ---
 
-## 🏛️ The Sovereign Architecture
-
-AeonSage is architected on three axiomatic pillars, fundamentally distinguishing it from standard agent frameworks.
-
-### 1. **Verified Decentralized Identity (VDID)**
-Your agent is not an anonymous script. It possesses a cryptographically verifiable identity.
-- **Identity Binding**: Every cognitive session is cryptographically bound to a verified owner.
-- **Role-Based Governance**: Granular control over capabilities (Admin, User, Guest).
-- **Audit Trails**: Immutable logs of all high-stakes decisions.
-
-### 2. **Cognitive Determinism**
-- **God Mode vs. Standard**: Toggle between unrestricted cognitive reasoning and safety-constrained execution.
-- **Skill Routing Engine**: Intelligent intent dispatch to 50+ specialized skills (Coding, Vision, Planning).
-- **Active Defense**: Real-time behavioral firewalls against prompt injection and jailbreaking.
-
-### 3. **Omni-Channel Presence**
-Your sovereign intelligence, available everywhere you are.
-
-| Platform | Capabilities | Status |
-|:---|:---|:---:|
-| **WhatsApp / Telegram** | Rich Media, Voice Notes, Location | ✅ |
-| **Discord / Slack** | Thread Context, Role Mapping, File Analysis | ✅ |
-| **Desktop (Win/Mac)** | TUI Dashboard, Local File Ops, System Control | ✅ |
-| **Voice / SIP** | Real-time Telephony, STT/TTS Pipeline | ✅ |
-
----
-
-## 🛠️ Ecosystem & Skills
-
-AeonSage comes pre-loaded with a vast array of capabilities:
-
-*   **Engineering**: Full-context coding agent, git integration, PR reviews.
-*   **Research**: Deep web search, synthesis, and fact-checking.
-*   **Vision**: Multimodal analysis of images, documents, and UI screenshots.
-*   **Automation**: IFTTT-style workflows, cron jobs, and email hooks.
-*   **Memory**: Vector-based semantic recall of past interactions.
-
----
-
-## 📜 Comparison: AeonSage vs. Standard Agents
-
-| Feature | Standard Agents | **AeonSage OS** |
-|:---|:---|:---|
-| **Identity** | Simple API Keys | **VDID Sovereign Identity** |
-| **Execution** | Probabilistic | **Deterministic & Verified** |
-| **Security** | Prompt Filters | **Active Defense Kernel** |
-| **Routing** | Single LLM Call | **Multi-Model Cognitive Router** |
-| **Deployment** | Cloud SaaS | **Local / Private Cloud / Hybrid** |
-
----
-
-## 🤝 Contributing
-
-We welcome contributions from the community. Please read our [**Contributing Guide**](./CONTRIBUTING.md) to get started on building the future of sovereign intelligence.
-
-## 📄 License
-
-**MIT License** - Copyright © 2026 VelonLabs & The AeonSage Contributors.
-This is free and open-source software.
-
-<div align="center">
-  <sub>Built with ❤️ by VelonLabs. Empowering Intelligence.</sub>
-</div>
+**Copyright © 2026 VelonLabs.**
+This project is open-source under the MIT License.
