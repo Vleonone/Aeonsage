@@ -1,64 +1,86 @@
-# Contributing to the AeonSage OS Kernel
+# Contributing to AeonSage
 
-Thank you for your interest in contributing to **AeonSage Sovereign Intelligence OS**.
-This project operates under strict engineering standards to ensure the stability, security, and determinism of the kernel.
+Thank you for your interest in improving the AeonSage ecosystem. 
+We operate with an enterprise-grade engineering culture, prioritizing stability, determinism, and developer experience.
 
-> **Before you start**: This is not a hobbyist chatbot project. It is an operating system with safety-critical components (VDID, Active Defense). All contributions are subject to rigorous review.
+Whether you're fixing a bug, proposing a new skill, or improving documentation, your contributions help set the standard for sovereign intelligence.
 
 ---
 
-## 1. Governance & DCO
+## 🏗️ Architecture Overview
 
-We enforce the **Developer Certificate of Origin (DCO)** on all contributions. By contributing to this project, you certify that you have the right to submit your code under the MIT License.
+AeonSage is structured as a modular operating system. Understanding the layers will help you contribute effectively.
 
-*   Every commit must be signed off: `git commit -s -m "feat: add memory compaction"`
-*   Your `user.name` and `user.email` must match your GitHub identity.
-*   Anonymous contributions to kernel-space code are **rejected**.
+| Directory | Layer | Purpose |
+| :--- | :--- | :--- |
+| `src/kernel/` | **Core (Ring 0)** | The deterministic state machine and identity verification. |
+| `src/router/` | **Cognitive (Ring 1)** | Logic dispatching, prompt synthesis, and tool binding. |
+| `src/skills/` | **Extensions (Ring 2)** | Isolated capability modules (Web Search, File Ops). |
+| `ui/` | **Interface** | The React-based control dashboard. |
 
-## 2. Development Workflow
+---
 
-We follow a modified **Git Flow**:
+## 🚀 Getting Started
 
-1.  **Fork** the repository.
-2.  **Branch** from `main`:
-    *   Features: `feat/your-feature-name`
-    *   Fixes: `fix/issue-number`
-    *   Docs: `docs/update-security-policy`
-3.  **Commit** using [Conventional Commits](https://www.conventionalcommits.org/):
-    *   `feat: add discord slash command support`
-    *   `fix(kernel): resolve memory leak in cognitive router`
-4.  **Test** locally: `npm run test` (All tests must pass).
-5.  **Push** and open a **Pull Request (PR)** against `main`.
+### Prerequisites
+*   **Node.js**: v22.0.0 (Active LTS) or higher.
+*   **Package Manager**: We recommend `pnpm` for speed and consistency.
 
-## 3. Kernel Constraints (Important)
-
-If you are modifying `src/kernel/`, `src/security/`, or `src/identity/`:
-
-*   **No External Calls**: The kernel core must remain deterministic. Do not introduce unchecked API calls.
-*   **Zero-Trust**: Assume all input is potentially malicious (prompt injection).
-*   **Performance**: The routing loop must execute in `<50ms` overhead.
-
-## 4. Code Style
-
-We use `ESLint` + `Prettier` with strict rules.
-*   **TypeScript**: Explicit types required (`noImplicitAny`).
-*   **Comments**: Public methods must have JSDoc explanation.
-*   **Async**: Always handle Promise rejections.
-
+### Development Environment
 ```bash
-# Verify style before pushing
+# 1. Clone the repository
+git clone https://github.com/velonone/Aeonsage.git
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the kernel in development mode
+npm run dev
+
+# 4. Verify code quality
 npm run lint
 ```
 
-## 5. Security Disclosure
+---
 
-**DO NOT** open public issues for security vulnerabilities.
-If you find a bypass in the Active Defense layer or a VDID spoofing vector, please refer to [SECURITY.md](SECURITY.md).
+## 🤝 Contribution Workflow
+
+### 1. Reporting Issues
+We use GitHub Issues to track bugs and requests.
+*   **Bugs**: Please include reproduction steps and logs.
+*   **Security**: Do NOT open public issues for security vulnerabilities. Email `security@velonlabs.com`.
+
+### 2. Feature Proposals (RFCs)
+For significant changes, we recommend opening a [Discussion](https://github.com/velonone/Aeonsage/discussions) first. This ensures alignment on architecture before you write code.
+
+### 3. Pull Request Process
+1.  **Fork** the repository and create a feature branch (`feat/new-skill-xyz`).
+2.  **Commit** your changes using [Conventional Commits](https://www.conventionalcommits.org/).
+    *   `feat: add discord voice support`
+    *   `fix(kernel): resolve memory leak in router`
+3.  **Sign Your Work (DCO)**: All commits must serve as a Developer Certificate of Origin.
+    ```bash
+    git commit -s -m "feat: description"
+    ```
+4.  **Open PR**: Provide a clear description of the problem and solution.
 
 ---
 
-## 6. Community & Communication
-*   **Discussion Board**: [GitHub Discussions](https://github.com/velonone/Aeonsage/discussions)
-*   **Enterprise Support**: [pro.aeonsage.org](https://pro.aeonsage.org)
+## 🤖 AI Policy
 
-**Copyright © 2026 VelonLabs.**
+We embrace AI-assisted development. Code generated by LLMs (Claude, GPT-4, Cursor) is welcome, provided it meets our quality standards.
+
+*   **Review Requirement**: You are responsible for the correctness of the code. Verify all logic manually.
+*   **Transparency**: Please tag your PR with `[AI-Assisted]` to help reviewers focus on logic validation.
+
+---
+
+## 🌍 Community & Support
+
+*   **Enterprise Support**: [pro.aeonsage.org](https://pro.aeonsage.org)
+*   **Documentation**: [docs.aeonsage.org](https://docs.aeonsage.org)
+*   **Twitter**: [@AeonSage](https://x.com/AeonSage)
+
+We look forward to building the future of sovereign intelligence with you.
+
+**VelonLabs Engineering Team**
