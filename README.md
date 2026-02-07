@@ -6,207 +6,136 @@
   
   [![Version](https://img.shields.io/badge/Release-v2026.1.30-0066FF?style=for-the-badge&labelColor=1a1a1a)](https://github.com/velonone/Aeonsage/releases)
   [![OpenSage](https://img.shields.io/badge/OpenSage-Core_Repo-10B981?style=for-the-badge&labelColor=1a1a1a&logo=github)](https://github.com/velonone/Opensage)
-  [![License](https://img.shields.io/badge/License-Non--Commercial-red?style=for-the-badge&labelColor=1a1a1a)](./LICENSE)
   [![Build](https://img.shields.io/badge/Build-Passing-2EA44F?style=for-the-badge&labelColor=1a1a1a)](https://github.com/velonone/Aeonsage/actions)
   [![Docs](https://img.shields.io/badge/Docs-Official-orange?style=for-the-badge&labelColor=1a1a1a)](https://docs.aeonsage.org)
 
   <br>
   <p style="font-size: 1.1em; max-width: 800px; margin: auto; padding-top: 20px; color: #666;">
     <b>The Deterministic Sovereign Intelligence Operating System</b><br>
-    Engineered by <a href="https://velonlabs.com"><b>VelonLabs</b></a> & <a href="https://aeonsage.org"><b>AeonSage Team</b></a>
+    Start your sovereign journey: <a href="https://aeonsage.org">Official Site</a> • <a href="https://pro.aeonsage.org">Enterprise</a>
   </p>
 </div>
 
-<hr style="border: 0; outline: none; height: 2px; background: linear-gradient(to right, transparent, #30363d, transparent); margin: 40px 0;">
+<hr style="border: 0; outline: none; height: 1px; background: linear-gradient(to right, transparent, #30363d, transparent); margin: 40px 0;">
 
-## 1. Introduction: The Sovereign Narrative
+## The Sovereign Manifesto
 
-**AeonSage is not a chatbot; it is a Kernel.**
+> **"Identity first. Intelligence second. Tooling third."**
 
-In an era of probabilistic AI models that hallucinate and leak data, AeonSage introduces a **Sovereign Operating System** paradigm. It wraps stochastic LLMs in a deterministic runtime environment, enforcing **Identity Verification (VDID)**, **Cognitive Routing**, and **Operational Security** by design.
+In the current landscape of stochastic AI agents, **identity is an afterthought**. Models hallucinate, leak context, and operate without accountability.
 
-> **Open Source Core**: The cognitive engine is open-sourced as [**OpenSage**](https://github.com/velonone/Opensage), providing a transparent foundation for sovereign identity.
+**AeonSage** reverses this paradigm. It is an Operating System where **Identity (VDID)** is the kernel-level primitive. Before any cognitive routing occurs, the origin, intent, and permissions of the request are verified against a sovereign ledger.
 
-Unlike generic agent frameworks, AeonSage is architected for **Institutional Grade Agency**—where every action is validated, recorded, and attributable to a specific sovereign identity.
-
----
-
-## 2. System Architecture
-
-AeonSage operates on a "Ring Architecture" similar to traditional OS kernels, ensuring isolation between the cognitive core and external capability IO.
-
-```mermaid
-graph TD
-    subgraph "Capabilities Ring (User Space)"
-        IM[IM Channels]
-        Web[Web / API]
-        Auto[Automation]
-        Skills[Skill Registry]
-    end
-
-    subgraph "Sovereign Kernel (Kernel Space)"
-        Router{Cognitive Router}
-        Mem[Vector Memory]
-        Auth[VDID Identity Layer]
-        Audit[Audit Logger]
-        
-        Auth --> Router
-        Router --> Mem
-        Router --> Audit
-    end
-
-    subgraph "Infrastructure Layer"
-        LLM[Model Providers]
-        DB[Local Database]
-        FS[File System]
-    end
-
-    IM --> Auth
-    Web --> Auth
-    Router --> Skills
-    Router --> Auto
-    Skills --> LLM
-    Mem --> DB
-```
+This is not a chatbot. It is a **Deterministic Runtime Environment** for verified autonomous agency.
 
 ---
 
-## 3. Deployment Requirements
+## Architecture Design
 
-Before deploying the AeonSage OS, ensure your environment meets the minimum specifications.
+AeonSage implements a strict **Kernel-Ring Architecture**, enforcing separation between the cognitive core and external I/O.
 
-### **System Requirements**
-| Component | Minimum Spec | Recommended |
-| :--- | :--- | :--- |
-| **OS** | Windows 10/11, macOS 12+, Linux (Debian/Ubuntu) | Linux Kernel 5.15+ / Windows 11 |
-| **Runtime** | **Node.js v22.0.0+** | **Node.js v22.13.0 (LTS)** |
-| **Memory** | 4 GB RAM | 16 GB+ (for local models) |
-| **Storage** | 10 GB SSD | NVMe SSD |
+### 1. The Sovereign Kernel (Ring 0)
+The absolute core of the system.
+*   **Determinsitic State Machine**: Manages the agent's lifecycle, memory context, and permission boundaries.
+*   **Active Defense Wall**: A heuristic security layer that intercepts prompt injection and jailbreak attempts before they reach the model.
+*   **Audit Logger**: Immutable recording of every high-stakes decision.
 
-### **Installation Strategy**
+### 2. The Cognitive Router (Ring 1)
+A multi-modal inference engine that abstracts underlying LLMs.
+*   **Cost-Aware Routing**: Dispatches complex logic to SOTA models and routine chatter to local/fast models.
+*   **Tool Binding**: Determines which Ring 2 tools are required for the current intent.
 
-#### **Option A: Portable Binary (Windows)**
-Valid for non-technical users or rapid deployment.
-1. Download the verified **[AeonSage_OSS.zip](https://github.com/velonone/Aeonsage/releases/latest/download/AeonSage_OSS.zip)**.
-2. Extract to a secure directory (e.g., `C:\AeonSage`).
-3. Execute `AeonSage.bat` to initialize the kernel.
+### 3. Capability Extensions (Ring 2)
+The I/O layer that interacts with the messy digital world.
+*   **Connectivity**: Native bridges to WhatsApp, Telegram, Discord, Slack.
+*   **Skills**: Executable modules for GitHub Ops, Web Research, Media Control.
 
-#### **Option B: Corepack Installation (Global)**
-Standard deployment for developers.
+---
+
+## 4. Connectivity Matrix
+
+The OS provides native protocol bridges, eliminating the need for third-party automation services (like Zapier).
+
+| Protocol | Implementation | Capabilities | Status |
+| :--- | :--- | :--- | :---: |
+| **WhatsApp** | `wacli` (Baileys) | Multi-device, Media, Voice Notes | ✅ |
+| **Telegram** | `MTProto` / Bot API | Secret Chats, Channels, Admin Ops | ✅ |
+| **Discord** | WebSocket Gateway | Voice Channels, Slash Commands, Roles | ✅ |
+| **Slack** | Enterprise Grid | Threads, File Analysis, App Home | ✅ |
+| **Signal** | `libsignal` | E2EE Messaging | ✅ |
+| **Email** | SMTP / IMAP | Parsing, Drafting, Attachments | ✅ |
+
+---
+
+## 5. Deployment
+
+### System Requirements
+*   **OS**: Windows 11 / macOS 13+ / Linux Kernel 5.15+
+*   **Runtime**: Node.js v22.0.0+ (Active LTS)
+
+### Quick Start (Portable)
+For Windows users, we provide a zero-dependency portable release.
+1.  Download **[AeonSage_OSS.zip](https://github.com/velonone/Aeonsage/releases/latest/download/AeonSage_OSS.zip)**.
+2.  Extract the archive.
+3.  Run `AeonSage.bat`.
+
+### Developer Install
 ```bash
-# 1. Install via NPM Registry
+# Global installation via NPM
 npm install -g aeonsage
 
-# 2. Initialize System Configuration
+# Initialize configuration wizard
 aeonsage init
 
-# 3. Start the Kernel
+# Launch the kernel
 aeonsage start
 ```
 
 ---
 
-## 4. Feature Matrix & Edition Comparison
+## 6. Official Resources
 
-AeonSage implies a hierarchy of capability. The **Community OS** provides complete sovereignty for individuals, while the **Professional OS** enables institutional scale.
+Documentation is structured for system operators and kernel developers.
 
-| **Capability Layer** | **Feature** | **Community OS (OSS)** | **Professional OS (PRO)** |
-| :--- | :--- | :---: | :---: |
-| **Identity** | **VDID Verification** | Local / Self-Signed | **Global Consensus** |
-| | **Session Binding** | Single User | **Multi-Tenant / SSO** |
-| **Cognition** | **Inference Engine** | Local Router | **Nexus Cluster** |
-| | **Skills Access** | Standard Library (50+) | **Proprietary Financial/Legal** |
-| **Security** | **Active Defense** | Standard Ruleset | **Heuristic Zero-Day Wall** |
-| | **Audit Logs** | JSON / SQLite | **Immutable Ledger (WORM)** |
-| **Connectivity** | **Channels** | 20+ Platforms | **Carrier-Grade Telephony** |
-| | **Rate Limits** | Standard | **Unlimited / Dedicated** |
-| **Support** | **SLA** | Community | **24/7 Enterprise** |
-
----
-
-## 5. Ecosystem Capabilities
-
-AeonSage enables a "Universal Interface" to the digital world.
-
-### **🌐 Omni-Channel Connectivity**
-The OS natively speaks 20+ protocols across the web hierarchy.
-<table>
-  <tr>
-    <td align="center"><b>Instant Messaging</b></td>
-    <td align="center"><b>Enterprise</b></td>
-    <td align="center"><b>Decentralized</b></td>
-    <td align="center"><b>Social</b></td>
-  </tr>
-  <tr>
-    <td>WhatsApp • Telegram • Signal<br>iMessage • Line • Zalo</td>
-    <td>Slack • Discord • Teams<br>Google Chat • Zoom</td>
-    <td>Matrix • Nostr • XMMP<br>IRC</td>
-    <td>Twitter • Twitch • Reddit<br>YouTube</td>
-  </tr>
-</table>
-
-### **🧩 Deterministic Skills**
-A registry of verified executables that the agent can invoke safely.
-*   **DevOps**: GitHub, Docker, Kubernetes, Tmux, 1Password.
-*   **Productivity**: Notion, Trello, Obsidian, Google Workspace.
-*   **Lifestyle**: Spotify, Uber, Weather, Home Assistant (OpenHue).
-*   **Research**: Perplexity, Google Search, Wolfram Alpha.
-
----
-
-## 6. Documentation Index
-
-Information architecture for developers and operators.
-
-### **📘 Start Here**
-*   [**Installation Guide**](./docs/install.md): Detailed environment setup.
-*   [**QUICKSTART**](./docs/QUICKSTART.md): Zero to One in 5 minutes.
-*   [**Configuration**](./docs/wizard.md): Managing `config.yaml` and secrets.
-
-### **🛡️ Security & Operations**
-*   [**Security Policy**](./docs/security.md): Hardening guide for public instances.
-*   [**Logging Standards**](./docs/logging.md): Understanding audit trails.
-*   [**Remote Gateway**](./docs/remote-access.md): Secure tunnel configuration.
-
-### **💻 Developer Reference**
-*   [**CLI Reference**](./docs/cli/README.md): Complete command list.
-*   [**Plugin SDK**](./docs/plugin.md): Building custom skills.
-*   [**Testing Framework**](./docs/testing.md): Validating agent behavior.
+*   [**Installation Guide**](./docs/install.md)
+*   [**Security Policy**](./docs/security.md)
+*   [**Kernel Reference**](./docs/sovereign-kernel.md)
+*   [**Plugin Development**](./docs/plugin.md)
 
 ---
 
 ## 7. Ecosystem Partners
 
-We collaborate with industry leaders to define the standard for Sovereign Intelligence.
+Collaborating to build the Sovereign Web.
 
 <table>
   <tr>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/logos/vdid-logo.svg" alt="Identity Layer" width="80"><br>
-      <br><b>Identity Layer</b><br>Verifiable Decentralized ID
+      <a href="https://vdid.org"><img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/logos/vdid-logo.svg" alt="VDID" width="80"></a><br>
+      <br><b>Identity Layer</b>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/AESE.png" alt="Cognitive Kernel" width="80"><br>
-      <br><b>Cognitive Kernel</b><br>Reasoning Router
+      <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/AESE.png" alt="Kernel" width="80"><br>
+      <br><b>Cognitive Kernel</b>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/AeonSage_Wisdom_2026_v4.png" alt="Research Lab" width="120"><br>
-      <br><b>Research Lab</b><br>Sovereign Architecture
+      <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/AeonSage_Wisdom_2026_v4.png" alt="Research" width="100"><br>
+      <br><b>Research Lab</b>
     </td>
     <td align="center" width="25%">
-      <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/velonlabs-logo.png" alt="VelonLabs" width="100"><br>
-      <br><b>VelonLabs</b><br>System Engineering
+      <a href="https://velonlabs.com"><img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/velonlabs-logo.png" alt="VelonLabs" width="100"></a><br>
+      <br><b>System Engineering</b>
     </td>
   </tr>
 </table>
 
 ---
 
-## ⚠️ License & Usage
+## License & Legal
 
-**AeonSage Community Edition** is licensed under the **MIT License**.
+**AeonSage Community Edition** is distributed under the **MIT License**.
 
-> **Non-Commercial Note**: While the source code is open, the "AeonSage" trademark and the "VDID" verification network are proprietary technologies of VelonLabs. Commercial derivatives utilizing the AEONSAGE brand require an explicit enterprise license.
+> **Non-Commercial Use Only**: Although the source code is open, the "AeonSage" trademark and the "VDID" verification network are proprietary technologies of VelonLabs. Commercial derivatives utilizing the AEONSAGE brand require an explicit enterprise license.
 
 <div align="center">
   <br>
