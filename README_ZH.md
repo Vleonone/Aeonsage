@@ -31,24 +31,69 @@
 ---
 
 ## 核心架构设计
-
 AeonSage 采用严格的 **内核环 (Kernel-Ring) 架构**，强制实现认知核心与外部 I/O 的安全隔离。
 
-### 1. 主权内核 (Ring 0)
-系统的绝对核心，不可妥协。
-*   **确定性状态机**: 管理 Agent 的生命周期、记忆上下文及权限边界。
-*   **主动防御墙**: 启发式安全层，在 Prompt 注入与越狱攻击触达模型前将其拦截。
-*   **审计日志**: 对所有高风险决策进行不可篡改的记录。
+### 2.1 主权转换 (Sovereign Transformation)
+AeonSage 作为一个**确定性运行时 (Deterministic Runtime)**，将原始大模型的无序熵转化为有序的主权智能。
 
-### 2. 认知路由器 (Ring 1)
-抽象并统筹底层大模型的多模态推理引擎。
-*   **成本感知路由**: 将复杂的逻辑分发至 SOTA 模型（如 Claude 3.5），将日常对话路由至高速本地模型。
-*   **工具绑定**: 动态判断并挂载当前意图所需的 Ring 2 工具。
+```mermaid
+graph LR
+    subgraph "传统模式 (无序熵增)"
+        Raw[随机概率 LLM]
+        Leak[上下文泄露]
+        Cost[不可控成本]
+        Raw --> Leak
+        Raw --> Cost
+    end
 
-### 3. 能力扩展层 (Ring 2)
-与纷繁复杂的数字世界交互的 I/O 层。
-*   **全渠道连接**: 原生桥接 WhatsApp, Telegram, Discord, Slack 等主流平台。
-*   **技能库**: 包含 GitHub 运维、Web 深度搜索、媒体控制等可执行模块。
+    Transaction((主权内核<br>Sovereign))
+
+    subgraph "AeonSage (确定性有序)"
+        VDID[验证身份]
+        Route[认知路由]
+        Audit[不可篡改日志]
+    end
+
+    Raw --> Transaction
+    Transaction --> VDID
+    Transaction --> Route
+    Route --> Audit
+    
+    style Transaction fill:#000,stroke:#fff,stroke-width:2px,color:#fff
+    style VDID fill:#10B981,stroke:#333,color:#000
+    style Route fill:#0066FF,stroke:#333,color:#fff
+```
+
+### 2.2 认知执行时序 (Execution Sequence)
+每一个用户意图都被视为一笔可验证的“认知交易”。
+
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant Kernel as 主权内核
+    participant Router as 认知路由
+    participant Skill as 技能库 (Ring 2)
+    participant Ledger as 审计日志
+
+    User->>Kernel: 提交意图 (VDID签名)
+    Kernel->>Kernel: 验证签名合法性
+    Kernel->>Router: 分发上下文
+    
+    rect rgb(20, 20, 20)
+        Note over Router: 复杂度分析阶段
+        Router->>Router: 评估熵值 (0.0 - 1.0)
+        
+        alt 低复杂度 (<0.3)
+            Router->>Skill: 执行本地启发式逻辑
+        else 高复杂度 (>0.7)
+            Router->>Skill: 调用 SOTA 模型 (Claude/GPT-4)
+        end
+    end
+
+    Skill-->>Router: 返回执行载荷
+    Router->>Ledger: 提交交易哈希
+    Router-->>User: 返回确定性响应
+```
 
 ---
 

@@ -1,6 +1,6 @@
 ﻿<div align="center">
   <a href="https://aeonsage.org">
-    <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/aeonsage_Banner.svg" alt="AEONSAGE OS" width="100%" loading="eager">
+    <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/opensage_Banner.svg" alt="AEONSAGE OS" width="100%" loading="eager">
   </a>
   <br>
   
@@ -35,21 +35,67 @@ This is not a chatbot. It is a **Deterministic Runtime Environment** for verifie
 
 AeonSage implements a strict **Kernel-Ring Architecture**, enforcing separation between the cognitive core and external I/O.
 
-### 1. The Sovereign Kernel (Ring 0)
-The absolute core of the system.
-*   **Determinsitic State Machine**: Manages the agent's lifecycle, memory context, and permission boundaries.
-*   **Active Defense Wall**: A heuristic security layer that intercepts prompt injection and jailbreak attempts before they reach the model.
-*   **Audit Logger**: Immutable recording of every high-stakes decision.
+### 2.1 The Sovereign Transformation
+AeonSage acts as a **Deterministic Runtime** that stabilizes the entropy of raw LLMs.
 
-### 2. The Cognitive Router (Ring 1)
-A multi-modal inference engine that abstracts underlying LLMs.
-*   **Cost-Aware Routing**: Dispatches complex logic to SOTA models and routine chatter to local/fast models.
-*   **Tool Binding**: Determines which Ring 2 tools are required for the current intent.
+```mermaid
+graph LR
+    subgraph "Legacy (Entropy)"
+        Raw[Stochastic LLM]
+        Leak[Context Leak]
+        Cost[Unbounded Cost]
+        Raw --> Leak
+        Raw --> Cost
+    end
 
-### 3. Capability Extensions (Ring 2)
-The I/O layer that interacts with the messy digital world.
-*   **Connectivity**: Native bridges to WhatsApp, Telegram, Discord, Slack.
-*   **Skills**: Executable modules for GitHub Ops, Web Research, Media Control.
+    Transaction((Sovereign<br>Kernel))
+
+    subgraph "AeonSage (Order)"
+        VDID[Verified ID]
+        Route[Cognitive Router]
+        Audit[Immutable Log]
+    end
+
+    Raw --> Transaction
+    Transaction --> VDID
+    Transaction --> Route
+    Route --> Audit
+    
+    style Transaction fill:#000,stroke:#fff,stroke-width:2px,color:#fff
+    style VDID fill:#10B981,stroke:#333,color:#000
+    style Route fill:#0066FF,stroke:#333,color:#fff
+```
+
+### 2.2 Cognitive Execution Sequence
+Each user intent is treated as a verifiable transaction.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Kernel as Sovereign Kernel
+    participant Router as Cognitive Router
+    participant Skill as Skill Registry (Ring 2)
+    participant Ledger as Audit Log
+
+    User->>Kernel: Submit Intent (Signed)
+    Kernel->>Kernel: Verify VDID Signature
+    Kernel->>Router: Dispatch Context
+    
+    rect rgb(20, 20, 20)
+        Note over Router: Analysis Phase
+        Router->>Router: Evaluates Complexity (0.0 - 1.0)
+        
+        alt Low Complexity (<0.3)
+            Router->>Skill: Execute Local Heuristic
+        else High Complexity (>0.7)
+            Router->>Skill: Invoke SOTA Model (Claude/GPT-4)
+        end
+    end
+
+    Skill-->>Router: Result Payload
+    Router->>Ledger: Commit Transaction Hash
+    Router-->>User: Deterministic Response
+```
 
 ---
 
@@ -145,3 +191,4 @@ Collaborating to build the Sovereign Web.
   <br>
   <img src="https://img.shields.io/badge/Status-Active_Development-blue?style=flat-square" alt="Status">
 </div>
+
