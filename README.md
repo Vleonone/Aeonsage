@@ -157,7 +157,33 @@ aeonsage start
 
 ---
 
-## 6. Official Resources
+## 6. Edition Comparison
+
+AeonSage is available in two editions. The **Community Edition** is fully functional and open source.
+The **Professional Edition** unlocks enterprise-grade capabilities for teams and production workloads.
+
+| Category | Community | Professional |
+| :--- | :---: | :---: |
+| **Cognitive Engine** | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Multi-LLM Routing** | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Identity (VDID)** | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Messaging Channels** | ![4](https://img.shields.io/badge/4_Platforms-E8832A?style=flat-square) | ![6+](https://img.shields.io/badge/6+_Platforms-2ea44f?style=flat-square) |
+| **Skill Extensions** | ![Core](https://img.shields.io/badge/Core_Set-E8832A?style=flat-square) | ![Full](https://img.shields.io/badge/Full_Library-2ea44f?style=flat-square) |
+| **Active Defense** | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Encrypted Vault** | ![Pro](https://img.shields.io/badge/Pro_Only-7B5EA7?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Audit & Compliance** | ![Pro](https://img.shields.io/badge/Pro_Only-7B5EA7?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Control Dashboard** | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Workflow Builder** | ![Pro](https://img.shields.io/badge/Pro_Only-7B5EA7?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Multi-Agent** | ![Pro](https://img.shields.io/badge/Pro_Only-7B5EA7?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Self-Hosted** | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Managed Cloud** | ![Pro](https://img.shields.io/badge/Pro_Only-7B5EA7?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+| **Priority Support** | ![Pro](https://img.shields.io/badge/Pro_Only-7B5EA7?style=flat-square) | ![Yes](https://img.shields.io/badge/Included-2ea44f?style=flat-square) |
+
+> **Interested in the Professional Edition?** → [pro.aeonsage.org](https://pro.aeonsage.org)
+
+---
+
+## 7. Official Resources
 
 Documentation is structured for system operators and kernel developers.
 
