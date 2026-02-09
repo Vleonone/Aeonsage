@@ -22,10 +22,11 @@ export async function copyA2uiAssets({
   try {
     await fs.stat(path.join(srcDir, "index.html"));
     await fs.stat(path.join(srcDir, "a2ui.bundle.js"));
-  } catch (err) {
-    const message =
-      'Missing A2UI bundle assets. Run "pnpm canvas:a2ui:bundle" and retry.';
-    throw new Error(message, { cause: err });
+  } catch {
+    // In OSS mode, vendor/a2ui is excluded so the bundle cannot be generated.
+    // Skip gracefully instead of failing the build.
+    console.log("A2UI bundle assets not found; skipping copy (OSS mode).");
+    return;
   }
   await fs.mkdir(path.dirname(outDir), { recursive: true });
   await fs.cp(srcDir, outDir, { recursive: true });

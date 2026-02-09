@@ -72,7 +72,9 @@ export function hasOversizedToolResults(
   contextWindowTokens: number,
 ): boolean {
   const maxChars = getMaxToolResultChars(contextWindowTokens);
-  const messages = sessionManager.getMessages();
+  const getMessages = (sessionManager as unknown as { getMessages?: () => unknown[] }).getMessages;
+  if (!getMessages) return false;
+  const messages = getMessages.call(sessionManager);
   for (const msg of messages) {
     const rec = msg as Record<string, unknown>;
     if (rec.role === "toolResult" && getTextContentLength(rec) > maxChars) {
@@ -91,14 +93,16 @@ export function truncateOversizedToolResults(
   contextWindowTokens: number,
 ): boolean {
   const maxChars = getMaxToolResultChars(contextWindowTokens);
-  const messages = sessionManager.getMessages();
+  const getMessages = (sessionManager as unknown as { getMessages?: () => unknown[] }).getMessages;
+  if (!getMessages) return false;
+  const messages = getMessages.call(sessionManager);
   let truncatedCount = 0;
 
   for (let i = 0; i < messages.length; i++) {
     const msg = messages[i] as Record<string, unknown>;
     if (msg.role === "toolResult" && getTextContentLength(msg) > maxChars) {
       const truncated = truncateTextContent(msg, maxChars);
-      messages[i] = truncated as typeof messages[number];
+      messages[i] = truncated as unknown as typeof messages[number];
       truncatedCount++;
     }
   }

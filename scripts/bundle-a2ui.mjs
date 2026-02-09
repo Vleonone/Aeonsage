@@ -54,6 +54,17 @@ async function computeHash() {
 }
 
 async function main() {
+    // In OSS mode, vendor/a2ui is excluded. Skip bundling gracefully.
+    const vendorLitPath = join(ROOT_DIR, 'vendor/a2ui/renderers/lit');
+    if (!existsSync(vendorLitPath)) {
+        if (existsSync(OUTPUT_FILE)) {
+            console.log('A2UI vendor sources not found; using existing bundle.');
+        } else {
+            console.log('A2UI vendor sources not found; skipping bundle step (OSS mode).');
+        }
+        process.exit(0);
+    }
+
     console.log('Computing A2UI bundle hash...');
     const currentHash = await computeHash();
 

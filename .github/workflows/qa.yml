@@ -37,6 +37,7 @@ jobs:
         run: pnpm lint:css 2>&1 || true
 
       - name: Brand Audit
+        if: hashFiles('scripts/brand-audit.ts') != ''
         run: pnpm brand:audit:strict
 
   build:

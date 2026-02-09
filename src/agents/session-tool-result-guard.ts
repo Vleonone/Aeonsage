@@ -102,7 +102,7 @@ export function installSessionToolResultGuard(
       }
       return block;
     });
-    return mutated ? { ...message, content: capped } as AgentMessage : message;
+    return mutated ? { ...message, content: capped } as unknown as AgentMessage : message;
   };
 
   const guardedAppend = (message: AgentMessage) => {

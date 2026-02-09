@@ -155,7 +155,7 @@ function appendAssistantTranscriptMessage(params: {
     return { ok: false, error: err instanceof Error ? err.message : String(err) };
   }
 
-  return { ok: true, messageId, message: transcriptEntry.message };
+  return { ok: true, messageId, message: transcriptEntry.message as Record<string, unknown> | undefined };
 }
 
 function nextChatSeq(context: { agentRunSeq: Map<string, number> }, runId: string) {
