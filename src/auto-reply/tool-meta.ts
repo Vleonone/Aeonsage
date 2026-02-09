@@ -11,7 +11,8 @@ export function shortenPath(p: string): string {
 
 export function shortenMeta(meta: string): string {
   if (!meta) return meta;
-  const colonIdx = meta.indexOf(":");
+  // Skip Windows drive letters (e.g. "C:\...") — colon at index 1 is a drive letter
+  const colonIdx = meta.indexOf(":", process.platform === "win32" ? 2 : 0);
   if (colonIdx === -1) return shortenHomeInString(meta);
   const base = meta.slice(0, colonIdx);
   const rest = meta.slice(colonIdx);

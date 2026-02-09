@@ -223,7 +223,8 @@ export const buildTelegramMessageContext = async ({
     if (dmPolicy === "disabled") return null;
 
     if (dmPolicy !== "open") {
-      const candidate = String(chatId);
+      // Use sender's user id (msg.from.id) for allowFrom matching, fall back to chatId
+      const candidate = msg.from?.id ? String(msg.from.id) : String(chatId);
       const senderUsername = msg.from?.username ?? "";
       const allowMatch = resolveSenderAllowMatch({
         allow: effectiveDmAllow,

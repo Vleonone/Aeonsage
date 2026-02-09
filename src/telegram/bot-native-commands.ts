@@ -322,10 +322,12 @@ export const registerTelegramNativeCommands = ({
   ];
 
   if (allCommands.length > 0) {
+    // Telegram Bot API rejects >100 commands with BOT_COMMANDS_TOO_MUCH
+    const truncatedCommands = allCommands.slice(0, 100);
     void withTelegramApiErrorLogging({
       operation: "setMyCommands",
       runtime,
-      fn: () => bot.api.setMyCommands(allCommands),
+      fn: () => bot.api.setMyCommands(truncatedCommands),
     }).catch(() => {});
 
     if (typeof (bot as unknown as { command?: unknown }).command !== "function") {

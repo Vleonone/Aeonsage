@@ -179,7 +179,10 @@ export function applyModelDefaults(cfg: AeonSageConfig): AeonSageConfig {
         if (raw.contextWindow !== contextWindow) modelMutated = true;
 
         const defaultMaxTokens = Math.min(DEFAULT_MODEL_MAX_TOKENS, contextWindow);
-        const maxTokens = isPositiveNumber(raw.maxTokens) ? raw.maxTokens : defaultMaxTokens;
+        const maxTokens = Math.min(
+          isPositiveNumber(raw.maxTokens) ? raw.maxTokens : defaultMaxTokens,
+          contextWindow,
+        );
         if (raw.maxTokens !== maxTokens) modelMutated = true;
 
         if (!modelMutated) return model;

@@ -84,10 +84,32 @@ export function installSessionToolResultGuard(
     pending.clear();
   };
 
+  /** Hard cap: truncate tool result text content exceeding 400K chars (~100K tokens) */
+  const TOOL_RESULT_HARD_CAP_CHARS = 400_000;
+
+  const capToolResultContent = (message: AgentMessage): AgentMessage => {
+    const content = (message as { content?: unknown }).content;
+    if (!Array.isArray(content)) return message;
+    let mutated = false;
+    const capped = content.map((block: Record<string, unknown>) => {
+      if (block?.type === "text" && typeof block.text === "string" && block.text.length > TOOL_RESULT_HARD_CAP_CHARS) {
+        mutated = true;
+        return {
+          ...block,
+          text: block.text.slice(0, TOOL_RESULT_HARD_CAP_CHARS) +
+            "\n\n[Content truncated: exceeded maximum tool result size. Use offset/limit parameters for large files.]",
+        };
+      }
+      return block;
+    });
+    return mutated ? { ...message, content: capped } as AgentMessage : message;
+  };
+
   const guardedAppend = (message: AgentMessage) => {
     const role = (message as { role?: unknown }).role;
 
     if (role === "toolResult") {
+      message = capToolResultContent(message);
       const id = extractToolResultId(message as Extract<AgentMessage, { role: "toolResult" }>);
       const toolName = id ? pending.get(id) : undefined;
       if (id) pending.delete(id);

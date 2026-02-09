@@ -82,6 +82,24 @@ function ensureTranscriptFile(params: { transcriptPath: string; sessionId: strin
   }
 }
 
+/**
+ * Read the last entry's `id` from a JSONL transcript file to preserve the parentId DAG chain.
+ * Without parentId, Pi cannot reconstruct context after compaction (post-compaction amnesia).
+ */
+function resolveLeafMessageId(transcriptPath: string): string | undefined {
+  try {
+    const content = fs.readFileSync(transcriptPath, "utf-8");
+    const lines = content.trimEnd().split("\n");
+    for (let i = lines.length - 1; i >= 0; i--) {
+      try {
+        const entry = JSON.parse(lines[i]);
+        if (entry.type === "message" && entry.id) return entry.id;
+      } catch { /* skip malformed lines */ }
+    }
+  } catch { /* file read error */ }
+  return undefined;
+}
+
 function appendAssistantTranscriptMessage(params: {
   message: string;
   label?: string;
@@ -114,20 +132,22 @@ function appendAssistantTranscriptMessage(params: {
 
   const now = Date.now();
   const messageId = randomUUID().slice(0, 8);
+  const parentId = resolveLeafMessageId(transcriptPath);
   const labelPrefix = params.label ? `[${params.label}]\n\n` : "";
   const messageBody: Record<string, unknown> = {
     role: "assistant",
     content: [{ type: "text", text: `${labelPrefix}${params.message}` }],
     timestamp: now,
-    stopReason: "injected",
+    stopReason: "stop",
     usage: { input: 0, output: 0, totalTokens: 0 },
   };
-  const transcriptEntry = {
+  const transcriptEntry: Record<string, unknown> = {
     type: "message",
     id: messageId,
     timestamp: new Date(now).toISOString(),
     message: messageBody,
   };
+  if (parentId) transcriptEntry.parentId = parentId;
 
   try {
     fs.appendFileSync(transcriptPath, `${JSON.stringify(transcriptEntry)}\n`, "utf-8");
@@ -634,23 +654,25 @@ export const chatHandlers: GatewayRequestHandlers = {
       return;
     }
 
-    // Build transcript entry
+    // Build transcript entry — preserve parentId chain to prevent post-compaction amnesia
     const now = Date.now();
     const messageId = randomUUID().slice(0, 8);
+    const parentId = resolveLeafMessageId(transcriptPath);
     const labelPrefix = p.label ? `[${p.label}]\n\n` : "";
     const messageBody: Record<string, unknown> = {
       role: "assistant",
       content: [{ type: "text", text: `${labelPrefix}${p.message}` }],
       timestamp: now,
-      stopReason: "injected",
+      stopReason: "stop",
       usage: { input: 0, output: 0, totalTokens: 0 },
     };
-    const transcriptEntry = {
+    const transcriptEntry: Record<string, unknown> = {
       type: "message",
       id: messageId,
       timestamp: new Date(now).toISOString(),
       message: messageBody,
     };
+    if (parentId) transcriptEntry.parentId = parentId;
 
     // Append to transcript file
     try {
