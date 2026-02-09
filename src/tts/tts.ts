@@ -51,6 +51,38 @@ const DEFAULT_OPENAI_VOICE = "alloy";
 const DEFAULT_EDGE_VOICE = "en-US-MichelleNeural";
 const DEFAULT_EDGE_LANG = "en-US";
 const DEFAULT_EDGE_OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3";
+const EDGE_TELEGRAM_OUTPUT_FORMAT = "ogg-24khz-16bit-mono-opus";
+const DEFAULT_EDGE_VOICE_ZH = "zh-CN-XiaoxiaoNeural";
+const DEFAULT_EDGE_LANG_ZH = "zh-CN";
+
+/**
+ * CJK Unified Ideographs + Extension A + Compatibility Ideographs.
+ * Used to detect Chinese-dominant text for Edge TTS voice auto-selection.
+ */
+const CJK_RE = /[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g;
+
+type DetectedEdgeVoice = { voice: string; lang: string };
+
+/**
+ * Detect the dominant language of text and return the appropriate Edge TTS
+ * voice+lang pair. If CJK characters constitute >= 30% of non-whitespace
+ * characters, use Chinese voice; otherwise use configured defaults.
+ * User-configured voice is always respected.
+ */
+function detectEdgeVoice(
+  text: string,
+  configVoice: string,
+  configLang: string,
+  voiceConfigured: boolean,
+): DetectedEdgeVoice {
+  if (voiceConfigured) return { voice: configVoice, lang: configLang };
+  const stripped = text.replace(/\s/g, "");
+  if (stripped.length === 0) return { voice: configVoice, lang: configLang };
+  const cjkMatches = stripped.match(CJK_RE);
+  const ratio = (cjkMatches?.length ?? 0) / stripped.length;
+  if (ratio >= 0.3) return { voice: DEFAULT_EDGE_VOICE_ZH, lang: DEFAULT_EDGE_LANG_ZH };
+  return { voice: configVoice, lang: configLang };
+}
 
 const DEFAULT_ELEVENLABS_VOICE_SETTINGS = {
   stability: 0.5,
@@ -117,6 +149,7 @@ export type ResolvedTtsConfig = {
     lang: string;
     outputFormat: string;
     outputFormatConfigured: boolean;
+    voiceConfigured: boolean;
     pitch?: string;
     rate?: string;
     volume?: string;
@@ -249,7 +282,7 @@ export function resolveTtsConfig(cfg: AeonSageConfig): ResolvedTtsConfig {
   const raw: TtsConfig = cfg.messages?.tts ?? {};
   const providerSource = raw.provider ? "config" : "default";
   const edgeOutputFormat = raw.edge?.outputFormat?.trim();
-  const auto = normalizeTtsAutoMode(raw.auto) ?? (raw.enabled ? "always" : "off");
+  const auto = normalizeTtsAutoMode(raw.auto) ?? (raw.enabled ? "always" : "inbound");
   return {
     auto,
     mode: raw.mode ?? "final",
@@ -289,6 +322,7 @@ export function resolveTtsConfig(cfg: AeonSageConfig): ResolvedTtsConfig {
       lang: raw.edge?.lang?.trim() || DEFAULT_EDGE_LANG,
       outputFormat: edgeOutputFormat || DEFAULT_EDGE_OUTPUT_FORMAT,
       outputFormatConfigured: Boolean(edgeOutputFormat),
+      voiceConfigured: Boolean(raw.edge?.voice?.trim()),
       pitch: raw.edge?.pitch?.trim() || undefined,
       rate: raw.edge?.rate?.trim() || undefined,
       volume: raw.edge?.volume?.trim() || undefined,
@@ -460,7 +494,12 @@ function resolveChannelId(channel: string | undefined): ChannelId | null {
   return channel ? normalizeChannelId(channel) : null;
 }
 
-function resolveEdgeOutputFormat(config: ResolvedTtsConfig): string {
+function resolveEdgeOutputFormat(
+  config: ResolvedTtsConfig,
+  channelId: string | null,
+): string {
+  if (config.edge.outputFormatConfigured) return config.edge.outputFormat;
+  if (channelId === "telegram") return EDGE_TELEGRAM_OUTPUT_FORMAT;
   return config.edge.outputFormat;
 }
 
@@ -1104,9 +1143,16 @@ export async function textToSpeech(params: {
         }
 
         const tempDir = mkdtempSync(path.join(tmpdir(), "tts-"));
-        let edgeOutputFormat = resolveEdgeOutputFormat(config);
+        let edgeOutputFormat = resolveEdgeOutputFormat(config, channelId);
         const fallbackEdgeOutputFormat =
           edgeOutputFormat !== DEFAULT_EDGE_OUTPUT_FORMAT ? DEFAULT_EDGE_OUTPUT_FORMAT : undefined;
+
+        const detected = detectEdgeVoice(
+          params.text,
+          config.edge.voice,
+          config.edge.lang,
+          config.edge.voiceConfigured,
+        );
 
         const attemptEdgeTts = async (outputFormat: string) => {
           const extension = inferEdgeExtension(outputFormat);
@@ -1116,6 +1162,8 @@ export async function textToSpeech(params: {
             outputPath: audioPath,
             config: {
               ...config.edge,
+              voice: detected.voice,
+              lang: detected.lang,
               outputFormat,
             },
             timeoutMs: config.timeoutMs,
@@ -1470,4 +1518,5 @@ export const _test = {
   summarizeText,
   resolveOutputFormat,
   resolveEdgeOutputFormat,
+  detectEdgeVoice,
 };

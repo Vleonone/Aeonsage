@@ -50,6 +50,7 @@ const {
   summarizeText,
   resolveOutputFormat,
   resolveEdgeOutputFormat,
+  detectEdgeVoice,
 } = _test;
 
 describe("tts", () => {
@@ -162,10 +163,15 @@ describe("tts", () => {
 
     it("uses default output format when edge output format is not configured", () => {
       const config = resolveTtsConfig(baseCfg);
-      expect(resolveEdgeOutputFormat(config)).toBe("audio-24khz-48kbitrate-mono-mp3");
+      expect(resolveEdgeOutputFormat(config, null)).toBe("audio-24khz-48kbitrate-mono-mp3");
     });
 
-    it("uses configured output format when provided", () => {
+    it("uses opus for Telegram when output format is not explicitly configured", () => {
+      const config = resolveTtsConfig(baseCfg);
+      expect(resolveEdgeOutputFormat(config, "telegram")).toBe("ogg-24khz-16bit-mono-opus");
+    });
+
+    it("uses configured output format when provided, even for Telegram", () => {
       const config = resolveTtsConfig({
         ...baseCfg,
         messages: {
@@ -174,7 +180,47 @@ describe("tts", () => {
           },
         },
       });
-      expect(resolveEdgeOutputFormat(config)).toBe("audio-24khz-96kbitrate-mono-mp3");
+      expect(resolveEdgeOutputFormat(config, "telegram")).toBe("audio-24khz-96kbitrate-mono-mp3");
+      expect(resolveEdgeOutputFormat(config, null)).toBe("audio-24khz-96kbitrate-mono-mp3");
+    });
+  });
+
+  describe("detectEdgeVoice", () => {
+    it("returns Chinese voice for Chinese-dominant text", () => {
+      const result = detectEdgeVoice("你好世界，这是一个测试消息", "en-US-MichelleNeural", "en-US", false);
+      expect(result.voice).toBe("zh-CN-XiaoxiaoNeural");
+      expect(result.lang).toBe("zh-CN");
+    });
+
+    it("returns English voice for English-dominant text", () => {
+      const result = detectEdgeVoice("Hello world, this is a test message", "en-US-MichelleNeural", "en-US", false);
+      expect(result.voice).toBe("en-US-MichelleNeural");
+      expect(result.lang).toBe("en-US");
+    });
+
+    it("returns Chinese voice for mixed text with CJK >= 30%", () => {
+      const result = detectEdgeVoice("hello你好world世界test测试", "en-US-MichelleNeural", "en-US", false);
+      expect(result.voice).toBe("zh-CN-XiaoxiaoNeural");
+    });
+
+    it("returns English voice for mixed text with CJK < 30%", () => {
+      const result = detectEdgeVoice("Hello world this is mostly English with 你好", "en-US-MichelleNeural", "en-US", false);
+      expect(result.voice).toBe("en-US-MichelleNeural");
+    });
+
+    it("respects explicit voice configuration", () => {
+      const result = detectEdgeVoice("你好世界这是中文", "en-US-AriaNeural", "en-US", true);
+      expect(result.voice).toBe("en-US-AriaNeural");
+    });
+
+    it("handles empty text gracefully", () => {
+      const result = detectEdgeVoice("", "en-US-MichelleNeural", "en-US", false);
+      expect(result.voice).toBe("en-US-MichelleNeural");
+    });
+
+    it("handles whitespace-only text", () => {
+      const result = detectEdgeVoice("   \n\t  ", "en-US-MichelleNeural", "en-US", false);
+      expect(result.voice).toBe("en-US-MichelleNeural");
     });
   });
 
