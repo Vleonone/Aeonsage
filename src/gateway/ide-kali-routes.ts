@@ -11,10 +11,11 @@ export async function handleKaliHttpRequest(
   _req: IncomingMessage,
   res: ServerResponse,
   _context: unknown,
-): Promise<void> {
+): Promise<boolean> {
   res.writeHead(403, { "Content-Type": "application/json" });
   res.end(JSON.stringify({
     error: "Security tools are not available in the Open Source edition.",
     upgrade: "https://github.com/velonone/AeonsagePro",
   }));
+  return false;
 }
