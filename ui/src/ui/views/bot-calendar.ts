@@ -83,7 +83,7 @@ export class BotCalendar extends LitElement {
       --cal-bg: var(--glass-bg, rgba(18, 20, 26, 0.7));
       --cal-text: var(--text, rgba(255, 255, 255, 0.9));
       --cal-muted: var(--muted, rgba(255, 255, 255, 0.5));
-      --cal-border: var(--glass-border, rgba(255, 255, 255, 0.1));
+      --cal-border: var(--glass-border, var(--border));
       --cal-today: var(--text-strong, #fff);
     }
 
@@ -127,7 +127,7 @@ export class BotCalendar extends LitElement {
     }
 
     .nav-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--bg-hover);
       color: var(--cal-text);
     }
 
@@ -171,7 +171,7 @@ export class BotCalendar extends LitElement {
     }
 
     .day-cell:hover {
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--border-subtle);
     }
 
     .day-cell.other-month {
@@ -181,12 +181,12 @@ export class BotCalendar extends LitElement {
 
     .day-cell.today {
       background: var(--cal-text);
-      color: #000;
+      color: var(--primary-foreground);
       font-weight: 600;
     }
 
     .day-cell.selected {
-      background: rgba(255, 255, 255, 0.15);
+      background: var(--accent-subtle);
       border: 1px solid var(--cal-border);
     }
 
@@ -201,14 +201,14 @@ export class BotCalendar extends LitElement {
     }
 
     .day-cell.today.has-data::after {
-      background: rgba(0, 0, 0, 0.4);
+      background: var(--panel-strong);
     }
 
     /* Emotion Status Bar */
     .emotion-bar {
       margin-top: 16px;
       padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--card-transparent);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -239,7 +239,7 @@ export class BotCalendar extends LitElement {
     .popup-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: var(--panel-strong);
       backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
@@ -295,7 +295,7 @@ export class BotCalendar extends LitElement {
       width: 28px;
       height: 28px;
       border: none;
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--bg-hover);
       color: var(--cal-muted);
       border-radius: 50%;
       cursor: pointer;
@@ -306,7 +306,7 @@ export class BotCalendar extends LitElement {
     }
 
     .popup-close:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: var(--accent-subtle);
       color: var(--cal-text);
     }
 
@@ -331,11 +331,11 @@ export class BotCalendar extends LitElement {
     }
 
     .popup-tab:hover {
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--border-subtle);
     }
 
     .popup-tab.active {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--border);
       color: var(--cal-text);
     }
 
@@ -351,7 +351,7 @@ export class BotCalendar extends LitElement {
       align-items: flex-start;
       gap: 12px;
       padding: 12px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .activity-item:last-child {
@@ -400,7 +400,7 @@ export class BotCalendar extends LitElement {
     }
 
     .stat-card {
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--card-transparent);
       border-radius: 12px;
       padding: 16px;
       text-align: center;

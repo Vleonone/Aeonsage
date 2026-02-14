@@ -214,7 +214,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
                 gap: 8px;
                 padding: 12px 16px;
                 background: var(--ok-subtle);
-                border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+                border-bottom: 1px solid var(--accent-subtle);
             }
             
             .toolbar-btn {
@@ -223,7 +223,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
                 gap: 6px;
                 padding: 8px 14px;
                 background: transparent;
-                border: 1px solid rgba(34, 197, 94, 0.3);
+                border: 1px solid var(--accent-glow);
                 border-radius: 6px;
                 color: var(--ok);
                 font-size: 0.85rem;
@@ -250,19 +250,19 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
             /* Cell styles */
             .notebook-cell {
                 margin-bottom: 16px;
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                border: 1px solid var(--border);
                 border-radius: 8px;
-                background: rgba(0, 0, 0, 0.3);
+                background: var(--panel);
                 overflow: hidden;
             }
             
             .notebook-cell.active {
-                border-color: rgba(34, 197, 94, 0.5);
-                box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+                border-color: var(--accent-glow);
+                box-shadow: 0 0 0 1px var(--accent-subtle);
             }
             
             .notebook-cell.running {
-                border-color: rgba(249, 115, 22, 0.5);
+                border-color: var(--warn-muted);
             }
             
             .cell-toolbar {
@@ -270,16 +270,16 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
                 justify-content: space-between;
                 align-items: center;
                 padding: 6px 12px;
-                background: rgba(255, 255, 255, 0.03);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                background: var(--card-transparent);
+                border-bottom: 1px solid var(--border-subtle);
             }
             
             .cell-type-badge {
                 font-size: 0.7rem;
                 padding: 2px 8px;
                 border-radius: 4px;
-                background: rgba(255, 255, 255, 0.1);
-                color: #888;
+                background: var(--border);
+                color: var(--text-muted);
                 text-transform: uppercase;
             }
             
@@ -293,14 +293,14 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
                 background: transparent;
                 border: 1px solid transparent;
                 border-radius: 4px;
-                color: #666;
+                color: var(--text-muted);
                 cursor: pointer;
                 transition: all 0.2s;
             }
             
             .cell-btn:hover {
                 color: var(--ok);
-                border-color: rgba(34, 197, 94, 0.3);
+                border-color: var(--accent-glow);
             }
             
             .cell-btn.run:hover {
@@ -309,7 +309,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
             
             .cell-btn.delete:hover {
                 color: var(--danger);
-                border-color: rgba(239, 68, 68, 0.3);
+                border-color: var(--danger-subtle);
             }
             
             .cell-btn svg {
@@ -326,7 +326,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
                 background: transparent;
                 border: none;
                 outline: none;
-                color: #e5e7eb;
+                color: var(--text);
                 font-family: 'JetBrains Mono', 'Fira Code', monospace;
                 font-size: ${state.fontSize}px;
                 line-height: 1.6;
@@ -334,22 +334,22 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
             }
             
             .markdown-preview {
-                color: #d1d5db;
+                color: var(--text);
                 line-height: 1.6;
                 white-space: pre-wrap;
             }
             
             .cell-output {
                 padding: 12px;
-                border-top: 1px solid rgba(255, 255, 255, 0.05);
-                background: rgba(0, 0, 0, 0.2);
+                border-top: 1px solid var(--border-subtle);
+                background: var(--panel);
             }
             
             .cell-output pre {
                 margin: 0;
                 font-family: 'JetBrains Mono', monospace;
                 font-size: 0.85rem;
-                color: #d1d5db;
+                color: var(--text);
                 white-space: pre-wrap;
             }
             
@@ -362,13 +362,13 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
                 width: ${state.chatWidth}px;
                 display: flex;
                 flex-direction: column;
-                border-left: 1px solid rgba(34, 197, 94, 0.2);
-                background: rgba(0, 0, 0, 0.4);
+                border-left: 1px solid var(--accent-subtle);
+                background: var(--panel-strong);
             }
             
             .chat-header {
                 padding: 12px 16px;
-                border-bottom: 1px solid rgba(34, 197, 94, 0.2);
+                border-bottom: 1px solid var(--accent-subtle);
                 font-weight: 600;
                 color: var(--ok);
                 display: flex;
@@ -393,15 +393,15 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
             
             .chat-message.user {
                 background: var(--warn-subtle);
-                border: 1px solid rgba(249, 115, 22, 0.3);
+                border: 1px solid var(--warn-subtle);
                 color: var(--warn);
                 margin-left: 20px;
             }
             
             .chat-message.assistant {
                 background: var(--ok-subtle);
-                border: 1px solid rgba(34, 197, 94, 0.2);
-                color: #d1d5db;
+                border: 1px solid var(--accent-subtle);
+                color: var(--text);
                 margin-right: 20px;
             }
 
@@ -415,7 +415,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
                 inset: -2px;
                 padding: 1px;
                 border-radius: inherit;
-                background: conic-gradient(from 0deg, transparent 0deg, transparent 220deg, rgba(34, 197, 94, 0.65) 260deg, rgba(34, 197, 94, 0.05) 320deg, transparent 360deg);
+                background: conic-gradient(from 0deg, transparent 0deg, transparent 220deg, var(--accent, rgba(99,102,241,0.65)) 260deg, var(--accent-subtle) 320deg, transparent 360deg);
                 -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
                 -webkit-mask-composite: xor;
                 mask-composite: exclude;
@@ -430,7 +430,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
                 inset: -1px;
                 padding: 1px;
                 border-radius: inherit;
-                background: conic-gradient(from 0deg, transparent 0deg, transparent 240deg, rgba(34, 197, 94, 0.5) 280deg, rgba(34, 197, 94, 0) 340deg, transparent 360deg);
+                background: conic-gradient(from 0deg, transparent 0deg, transparent 240deg, var(--accent-glow) 280deg, rgba(34, 197, 94, 0) 340deg, transparent 360deg);
                 -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
                 -webkit-mask-composite: xor;
                 mask-composite: exclude;
@@ -450,7 +450,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
             
             .chat-input-area {
                 padding: 12px;
-                border-top: 1px solid rgba(34, 197, 94, 0.2);
+                border-top: 1px solid var(--accent-subtle);
             }
             
             .chat-input-row {
@@ -461,10 +461,10 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
             .chat-input {
                 flex: 1;
                 padding: 10px 14px;
-                background: rgba(0, 0, 0, 0.3);
-                border: 1px solid rgba(34, 197, 94, 0.3);
+                background: var(--panel);
+                border: 1px solid var(--accent-glow);
                 border-radius: 8px;
-                color: #e5e7eb;
+                color: var(--text);
                 font-size: 0.9rem;
                 outline: none;
             }
@@ -475,7 +475,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
             
             .chat-send-btn {
                 padding: 10px 16px;
-                background: rgba(34, 197, 94, 0.2);
+                background: var(--accent-subtle);
                 border: 1px solid var(--ok);
                 border-radius: 8px;
                 color: var(--ok);
@@ -484,7 +484,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
             }
             
             .chat-send-btn:hover {
-                background: rgba(34, 197, 94, 0.3);
+                background: var(--accent-glow);
             }
             
             .chat-send-btn svg {
@@ -517,7 +517,7 @@ export function renderIde(state: IdeState, callbacks: IdeCallbacks): TemplateRes
     )}
                     
                     ${state.cells.length === 0 ? html`
-                        <div class="empty-state" style="text-align: center; padding: 60px 20px; color: #666;">
+                        <div class="empty-state" style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
                             <div style="font-size: 48px; margin-bottom: 16px;">${icons.code}</div>
                             <div style="font-size: 1.1rem; margin-bottom: 8px;">No cells yet</div>
                             <div style="font-size: 0.9rem;">Click "+ Code" or "+ Text" to add your first cell</div>

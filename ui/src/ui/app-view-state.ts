@@ -167,7 +167,7 @@ export type AppViewState = {
 
   dashboardSubTab: "overview" | "usage" | "instances" | "infrastructure";
   connectSubTab: "channels" | "voice";
-  intelligenceSubTab: "skills" | "sessions" | "nodes" | "market" | "workflow";
+  intelligenceSubTab: "skills" | "sessions" | "nodes" | "market";
   systemSubTab: "config" | "logs" | "debug" | "cron";
   setupWizardDismissed: boolean;
   usageState: import("./controllers/usage").UsageState;

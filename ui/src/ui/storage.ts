@@ -17,7 +17,7 @@ export type UiSettings = {
   autoReconnect: boolean; // Whether to auto-reconnect on disconnect (default: false for security)
   dashboardSubTab?: "overview" | "usage" | "instances" | "infrastructure";
   connectSubTab?: "channels" | "voice";
-  intelligenceSubTab?: "skills" | "sessions" | "nodes" | "market" | "workflow";
+  intelligenceSubTab?: "skills" | "sessions" | "nodes" | "market";
   systemSubTab?: "config" | "logs" | "debug" | "cron";
 };
 
@@ -70,7 +70,9 @@ export function loadSettings(): UiSettings {
       theme:
         parsed.theme === "light" ||
           parsed.theme === "dark" ||
-          parsed.theme === "system"
+          parsed.theme === "system" ||
+          parsed.theme === "free" ||
+          parsed.theme === "pro"
           ? parsed.theme
           : defaults.theme,
       chatFocusMode:

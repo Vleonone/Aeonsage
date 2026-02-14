@@ -2,19 +2,22 @@ import type { IconName } from "./icons.js";
 import { t, type Language } from "./i18n.js";
 
 // Consolidated Tab Groups with Translation Keys
+// Order: Chat (default) → Workflow (visual workbench) → Dashboard → ...
 export const TAB_GROUPS_META = [
+  { labelKey: "chat", tabs: ["chat"] },
+  { labelKey: "workflow", tabs: ["workflow"] },
   { labelKey: "dashboard", tabs: ["dashboard"] },
   { labelKey: "connect", tabs: ["connect"] },
   { labelKey: "intelligence", tabs: ["intelligence"] },
   { labelKey: "security", tabs: ["security"] },
   { labelKey: "system", tabs: ["system"] },
-  { labelKey: "chat", tabs: ["chat"] },
 ] as const;
 
 export type Tab =
   | "dashboard"
   | "connect"
   | "intelligence"
+  | "workflow"
   | "security"
   | "system"
   | "chat"
@@ -25,6 +28,7 @@ const TAB_PATHS: Record<Tab, string> = {
   dashboard: "/dashboard",
   connect: "/connect",
   intelligence: "/intelligence",
+  workflow: "/workflow",
   security: "/security",
   system: "/system",
   chat: "/chat",
@@ -88,6 +92,8 @@ export function tabFromPath(pathname: string, basePath = ""): Tab | null {
   if (normalized === ("/sessions")) return "intelligence";
   if (normalized === ("/nodes")) return "intelligence";
 
+  if (normalized === ("/workflow")) return "workflow";
+
   if (normalized === ("/config")) return "system";
   if (normalized === ("/logs")) return "system";
   if (normalized === ("/debug")) return "system";
@@ -124,6 +130,8 @@ export function iconForTab(tab: Tab): IconName {
       return "link";
     case "intelligence":
       return "zap";
+    case "workflow":
+      return "activity";
     case "security":
       return "shield";
     case "system":
@@ -148,6 +156,8 @@ export function titleForTab(tab: Tab, language: Language = 'en-US') {
       return texts.nav.connect;
     case "intelligence":
       return texts.nav.intelligence;
+    case "workflow":
+      return texts.nav.workflow;
     case "security":
       return texts.nav.security ?? "Security";
     case "system":
@@ -172,6 +182,8 @@ export function subtitleForTab(tab: Tab, language: Language = 'en-US') {
       return texts.pageSubtitles.channels;
     case "intelligence":
       return texts.pageSubtitles.skills;
+    case "workflow":
+      return texts.pageSubtitles.workflow;
     case "security":
       return texts.pageSubtitles.security ?? "Kill Switch, Gates, VDID";
     case "system":

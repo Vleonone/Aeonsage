@@ -44,7 +44,7 @@ irm https://aeonsage.org/install.ps1 | iex
 ### 步骤 1: 克隆并安装依赖
 
 ```bash
-git clone https://github.com/Velonone/AeonSage-Silicon-Intelligence.git
+git clone https://github.com/Vleonone/AeonsagePro.git
 cd aeonsage
 pnpm install
 ```
@@ -142,18 +142,17 @@ npm install -g pm2
 **方法 A: 使用部署包**
 
 ```bash
-cd ~
+mkdir -p /opt/aeonsage && cd /opt/aeonsage
 wget https://aeonsage.org/releases/AeonSage-V1.tar.gz
-tar -xzf AeonSage-V1.tar.gz
-cd aeonsage  # 或直接在 ~ 目录，取决于包结构
+tar -xzf AeonSage-V1.tar.gz --strip-components=0
 pnpm install --prod
 ```
 
 **方法 B: 从源码构建**
 
 ```bash
-git clone https://github.com/Velonone/AeonSage-Silicon-Intelligence.git ~/aeonsage
-cd ~/aeonsage
+git clone https://github.com/Vleonone/AeonsagePro.git /opt/aeonsage
+cd /opt/aeonsage
 pnpm install
 pnpm run build
 ```
@@ -238,8 +237,8 @@ mkdir -p ~/.aeonsage/agents/main/agent
 ### 步骤 5: 使用 PM2 启动
 
 ```bash
-cd ~  # 或 cd ~/aeonsage
-pm2 start "pnpm start gateway --allow-unconfigured --token your-gateway-token" --name aeonsage-gateway
+cd /opt/aeonsage
+pm2 start ecosystem.config.cjs
 
 # 保存配置以便重启后自动恢复
 pm2 save
@@ -397,7 +396,7 @@ pm2 startup
 ## 📞 技术支持
 
 - **Telegram**: @Aeon_Sage_Bot
-- **GitHub Issues**: [AeonSage-Silicon-Intelligence](https://github.com/Velonone/AeonSage-Silicon-Intelligence/issues)
+- **GitHub Issues**: [AeonSage-Silicon-Intelligence](https://github.com/Vleonone/AeonsagePro/issues)
 
 ---
 

@@ -21,6 +21,7 @@ node_modules
 .env.local
 .env.*
 !.env.example
+!.env.production
 .planning/
 server-aeonsage.json
 minimal-config.json
@@ -36,6 +37,7 @@ coverage
 .DS_Store
 **/.DS_Store
 ui/src/ui/__screenshots__/
+ui/src/ui/views/__screenshots__/
 ui/playwright-report/
 ui/test-results/
 
@@ -145,3 +147,19 @@ repowiki/
 # Sync Reports
 diff_report.json
 sync-check.json
+sync-report.json
+
+# Runtime temp files (may contain secrets in logs)
+.tmp/
+
+# Windows artifacts
+nul
+
+# AI / conversation artifacts
+prompt_history.jsonl
+
+# OSS subrepo (separate git repository)
+Aeonsage/
+
+# Old website directory (migrated to apps/website/)
+website/

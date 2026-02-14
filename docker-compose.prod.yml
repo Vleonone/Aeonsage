@@ -1,31 +1,93 @@
+# =============================================================================
+# AeonSage Production Docker Compose
+# Server: BuyVM CH RYZEN KVM 8GB / 150GB SSD / No GPU
+# =============================================================================
+# Usage:
+#   cp .env.production .env
+#   docker compose -f docker-compose.prod.yml up -d
+# =============================================================================
+
 services:
-  aeonsage:
-    image: aeonsage:latest
-    container_name: aeonsage-hub
+  # ─── PostgreSQL 16 ───
+  postgres:
+    image: postgres:16-alpine
+    container_name: aeonsage-db
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    ports:
-      - "${AEONSAGE_PORT:-18789}:18789"
-      - "${AEONSAGE_BRIDGE_PORT:-18790}:18790"
     environment:
-      - AEONSAGE_GATEWAY_TOKEN=${AEONSAGE_GATEWAY_TOKEN}
-      - AEONSAGE_GATEWAY_BIND=0.0.0.0
-      - AEONSAGE_GATEWAY_PORT=18789
-      - NODE_ENV=production
+      POSTGRES_DB: ${POSTGRES_DB:-aeonsage}
+      POSTGRES_USER: ${POSTGRES_USER:-aeonsage}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - ./data:/home/node/.aeonsage
-      - ./workspace:/home/node/aeonsage
-    # Resource limits for high-density hosting
+      - pgdata:/var/lib/postgresql/data
+      - ./scripts/db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aeonsage}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 2G
-        reservations:
+          cpus: '0.5'
           memory: 512M
+        reservations:
+          memory: 128M
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+
+  # ─── AeonSage Gateway ───
+  aeonsage:
+    image: aeonsage:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: aeonsage-hub
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "127.0.0.1:${AEONSAGE_GATEWAY_PORT:-18789}:18789"
+      - "127.0.0.1:${AEONSAGE_BRIDGE_PORT:-18790}:18790"
+    environment:
+      - AEONSAGE_GATEWAY_TOKEN=${AEONSAGE_GATEWAY_TOKEN:?Gateway token is required}
+      - AEONSAGE_GATEWAY_BIND=0.0.0.0
+      - AEONSAGE_GATEWAY_PORT=18789
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-aeonsage}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-aeonsage}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+      - NVIDIA_API_KEY=${NVIDIA_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN:-}
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN:-}
+      - SLACK_APP_TOKEN=${SLACK_APP_TOKEN:-}
+    volumes:
+      - ./data:/home/node/.aeonsage
+      - ./workspace:/home/node/aeonsage
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          memory: 512M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+volumes:
+  pgdata:
+    driver: local

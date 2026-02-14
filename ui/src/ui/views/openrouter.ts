@@ -245,8 +245,8 @@ export function renderOpenRouter(props: OpenRouterViewProps) {
         <style>
           .sovereign-theme .card__title { font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.8em; opacity: 0.8; }
           .kernel-status-badge { margin-left: auto; font-size: 0.75em; font-family: monospace; }
-          .kernel-status-badge.online { color: #00ff9d; text-shadow: 0 0 10px rgba(0,255,157,0.3); }
-          .kernel-status-badge.offline { color: #666; }
+          .kernel-status-badge.online { color: var(--ok); text-shadow: 0 0 10px var(--ok-subtle); }
+          .kernel-status-badge.offline { color: var(--text-muted); }
         </style>
     `;
 }

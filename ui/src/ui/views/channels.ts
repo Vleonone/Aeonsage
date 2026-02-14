@@ -78,12 +78,12 @@ function renderAnalysisCard(props: ChannelsProps) {
       <div class="analysis-header">
         <div class="analysis-title-group">
           <!-- SENSEI: Official Green Cartoon LOGO -->
-          <img src="/Aeon_logo.svg" alt="Channel Analysis" class="analysis-icon system-logo-tint" />
+          <img src="/aeonsage-logo02.svg" alt="Channel Analysis" class="analysis-icon system-logo-tint" />
           <div class="analysis-title">${texts.channels.analysis.title}</div>
           <div class="live-tag">LIVE TELEMETRY</div>
         </div>
         <!-- SENSEI: Use System Green for Status UI -->
-        <div class="pill ${totalConnected > 0 ? 'ok' : ''}" style="${totalConnected > 0 ? 'color: var(--ok); border-color: var(--ok); background: rgba(0, 255, 136, 0.1);' : ''}">
+        <div class="pill ${totalConnected > 0 ? 'ok' : ''}" style="${totalConnected > 0 ? 'color: var(--ok); border-color: var(--ok); background: var(--ok-subtle);' : ''}">
           <span class="statusDot" style="${totalConnected > 0 ? 'background-color: var(--ok); box-shadow: 0 0 8px var(--ok);' : ''}"></span>
           ${totalConnected > 0 ? 'ACTIVE' : 'STANDBY'}
         </div>

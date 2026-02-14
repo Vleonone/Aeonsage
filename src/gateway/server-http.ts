@@ -36,6 +36,10 @@ import { handleToolsInvokeHttpRequest } from "./tools-invoke-http.js";
 import { handleApiLocaleRequest } from "./api-locale.js";
 import { handleIdeHttpRequest } from "./ide-routes.js";
 import { handleKaliHttpRequest } from "./ide-kali-routes.js";
+import { handleAuthRoutes } from "./auth/auth-routes.js";
+import { handleFlagsRoute } from "./middleware/flags-route.js";
+import { handleUserRoutes } from "./routes/user-routes.js";
+import type { Database } from "../database/service.js";
 
 type SubsystemLogger = ReturnType<typeof createSubsystemLogger>;
 
@@ -217,6 +221,7 @@ export function createGatewayHttpServer(opts: {
   handlePluginRequest?: HooksRequestHandler;
   resolvedAuth: import("./auth.js").ResolvedGatewayAuth;
   tlsOptions?: TlsOptions;
+  db?: Database;
 }): HttpServer {
   const {
     canvasHost,
@@ -228,6 +233,7 @@ export function createGatewayHttpServer(opts: {
     handleHooksRequest,
     handlePluginRequest,
     resolvedAuth,
+    db,
   } = opts;
   const httpServer: HttpServer = opts.tlsOptions
     ? createHttpsServer(opts.tlsOptions, (req, res) => {
@@ -246,6 +252,12 @@ export function createGatewayHttpServer(opts: {
       const trustedProxies = configSnapshot.gateway?.trustedProxies ?? [];
       const url = new URL(req.url ?? "/", "http://localhost");
       if (handleApiLocaleRequest(req, res)) return;
+      // Handle auth routes (OAuth login, JWT refresh, user info)
+      if (db && (await handleAuthRoutes(req, res, { db }))) return;
+      // Handle feature flags API
+      if (db && (await handleFlagsRoute(req, res, { db }))) return;
+      // Handle user profile / usage API
+      if (db && (await handleUserRoutes(req, res, { db }))) return;
       // Handle IDE routes (terminal, filesystem, logs)
       if (
         await handleIdeHttpRequest(req, res, {

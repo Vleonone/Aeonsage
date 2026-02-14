@@ -229,6 +229,7 @@ export function resolveInfrastructureProps(
         onRefresh: () => void;
         onConnectNode: (nodeId: string) => void;
         onDisconnectNode: (nodeId: string) => void;
+        onConnectRemote: (url: string) => void;
     }
 ): InfrastructureProps {
     return {

@@ -158,8 +158,8 @@ export function renderMarketplace(props: MarketplaceProps) {
         font-weight: 700;
         letter-spacing: 1px;
         color: var(--ok, #22c55e);
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid rgba(34, 197, 94, 0.3);
+        background: var(--ok-subtle);
+        border: 1px solid var(--ok-muted);
         border-radius: 6px;
         z-index: 3;
       }
@@ -253,7 +253,7 @@ export function renderMarketplace(props: MarketplaceProps) {
       }
       .skill-card:hover {
         transform: translateY(-4px);
-        border-color: var(--accent-subtle, rgba(0, 255, 136, 0.3));
+        border-color: var(--accent-subtle, var(--accent-glow));
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
       }
       
@@ -293,9 +293,9 @@ export function renderMarketplace(props: MarketplaceProps) {
         border: 1px solid var(--border-subtle);
       }
       .skill-tag.official {
-        background: rgba(0, 255, 136, 0.1);
+        background: var(--accent-subtle);
         color: var(--accent);
-        border-color: rgba(0, 255, 136, 0.2);
+        border-color: var(--accent-subtle);
       }
 
       /* Card Content */
@@ -351,8 +351,8 @@ export function renderMarketplace(props: MarketplaceProps) {
       }
       .btn-installed {
         background: transparent;
-        color: var(--ok, #00FF88);
-        border: 1px solid rgba(0, 255, 136, 0.2);
+        color: var(--ok, #6366f1);
+        border: 1px solid var(--accent-subtle);
         padding: 8px 16px;
         border-radius: 8px;
         font-size: 13px;

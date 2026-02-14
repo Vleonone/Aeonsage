@@ -386,8 +386,8 @@ export class AeonSageBoot extends LitElement {
     if (this.bootStage === 'resonance') {
       return html`
         <div class="boot-container">
-          <div class="box-label" style="color: #888888;">SOVEREIGN_RESONANCE</div>
-          <div class="genesis-portrait" style="font-size: 4px; color: #888888; opacity: 1; filter: drop-shadow(0 0 15px rgba(136, 136, 136, 0.4));">${this.RESONANCE_ASCII}</div>
+          <div class="box-label" style="color: var(--text-muted);">SOVEREIGN_RESONANCE</div>
+          <div class="genesis-portrait" style="font-size: 4px; color: var(--text-muted); opacity: 1; filter: drop-shadow(0 0 15px rgba(136, 136, 136, 0.4));">${this.RESONANCE_ASCII}</div>
           <div class="box-footer">CORE: AWAKENING</div>
         </div>
       `;
@@ -406,35 +406,35 @@ export class AeonSageBoot extends LitElement {
 
     if (this.bootStage === 'minimal' || this.bootStage === 'complete') {
       return html`
-        <div class="boot-container" style="max-width: 500px; border-color: #333333; box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);">
-          <div class="box-label" style="color: #00a100;">SYSTEM_CALIBRATION</div>
-          <div class="tech-title" style="color: #F8FAFC; text-shadow: 0 0 10px rgba(0, 161, 0, 0.3);">A E O N S A G E</div>
-          
+        <div class="boot-container" style="max-width: 500px; border-color: var(--border); box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);">
+          <div class="box-label" style="color: var(--ok);">SYSTEM_CALIBRATION</div>
+          <div class="tech-title" style="color: var(--text-strong); text-shadow: 0 0 10px rgba(0, 161, 0, 0.3);">A E O N S A G E</div>
+
           <div style="margin: 24px 0; width: 100%;">
             <div class="status-row">
               <span class="status-label">Intelligence Core</span>
-              <span class="status-value" style="color: #00a100; text-shadow: 0 0 8px #00a100;">ONLINE</span>
+              <span class="status-value" style="color: var(--ok); text-shadow: 0 0 8px var(--ok);">ONLINE</span>
             </div>
             <div class="status-row">
               <span class="status-label">Genesis Signature</span>
-              <span class="status-value" style="color: #888888">VERIFIED</span>
+              <span class="status-value" style="color: var(--text-muted)">VERIFIED</span>
             </div>
             <div class="status-row">
               <span class="status-label">Time Scope</span>
-              <span class="status-value" style="color: #888888">AEON</span>
+              <span class="status-value" style="color: var(--text-muted)">AEON</span>
             </div>
             <div class="status-row">
               <span class="status-label">Observation</span>
-              <span class="status-value" style="color: #00a100">ACTIVE</span>
+              <span class="status-value" style="color: var(--ok)">ACTIVE</span>
             </div>
           </div>
-          
+
           ${this.bootStage === 'minimal' ? html`
             <div class="progress-container">
-              <div class="progress-bar" style="background: rgba(100, 100, 100, 0.1); border: 1px solid rgba(100, 100, 100, 0.3);">
-                <div class="progress-fill" style="width: ${this.progress}%; background: linear-gradient(90deg, #93E2FF, #888888);"></div>
+              <div class="progress-bar" style="background: rgba(100, 100, 100, 0.1); border: 1px solid var(--border-subtle);">
+                <div class="progress-fill" style="width: ${this.progress}%; background: linear-gradient(90deg, var(--accent-secondary), var(--text-muted));"></div>
               </div>
-              <div class="progress-text" style="color: #888888; font-size: 8px;">
+              <div class="progress-text" style="color: var(--text-muted); font-size: 8px;">
                 ${this.progress < 100 ? 'SYNCHRONIZING CONSCIOUSNESS...' : 'SYNCH COMPLETE'}
               </div>
             </div>

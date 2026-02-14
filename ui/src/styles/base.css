@@ -62,17 +62,16 @@
   --input: #1A1A1A;
   --ring: #888888;
 
-  /* PRIMARY ACCENT: Muted Battle Orange - Institutional Feel */
-  --accent: #B33D00;
-  /* Lower saturation burnt orange */
-  --accent-hover: #CC4500;
-  --accent-muted: #802B00;
-  --accent-subtle: rgba(179, 61, 0, 0.1);
-  --accent-glow: rgba(179, 61, 0, 0.2);
+  /* PRIMARY ACCENT: Indigo (Polar) */
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-muted: #4f46e5;
+  --accent-subtle: rgba(99, 102, 241, 0.12);
+  --accent-glow: rgba(99, 102, 241, 0.18);
 
-  /* SECONDARY ACCENT: Cyber Green */
-  --accent-secondary: #00E676;
-  --accent-secondary-subtle: rgba(0, 230, 118, 0.15);
+  /* SECONDARY ACCENT: Blue */
+  --accent-secondary: #3b82f6;
+  --accent-secondary-subtle: rgba(59, 130, 246, 0.12);
 
   /* STATUS ACCENTS */
   --accent-blue: #3B82F6;
@@ -80,8 +79,7 @@
   --accent-purple: #A855F7;
   --accent-yellow: #FFB800;
 
-  /* Status Colors - Muted */
-  --accent-green: #00a100;
+  --accent-green: #22c55e;
   --accent-pink: #EC4899;
   --primary: #888888;
   --primary-foreground: #000000;
@@ -93,10 +91,10 @@
   --accent-2-muted: rgba(102, 102, 102, 0.75);
   --accent-2-subtle: rgba(102, 102, 102, 0.18);
 
-  /* Sci-Fi Status Colors - High Contrast */
-  --ok: #00FF88;
-  --ok-muted: rgba(0, 255, 136, 0.75);
-  --ok-subtle: rgba(0, 255, 136, 0.12);
+  /* Status Colors */
+  --ok: #22c55e;
+  --ok-muted: rgba(34, 197, 94, 0.75);
+  --ok-subtle: rgba(34, 197, 94, 0.10);
   --destructive: #FF4444;
   --destructive-foreground: #ffffff;
   --warn: #FFB800;
@@ -107,13 +105,13 @@
   --danger-subtle: rgba(255, 68, 68, 0.12);
   --info: #4FC3F7;
 
-  /* Focus - Core Green Glow */
-  --focus: rgba(0, 161, 0, 0.4);
+  /* Focus */
+  --focus: rgba(99, 102, 241, 0.4);
   --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--ring);
   --focus-glow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ring), 0 0 24px var(--accent-glow);
 
   /* Grid */
-  --grid-line: rgba(0, 161, 0, 0.05);
+  --grid-line: rgba(99, 102, 241, 0.05);
 
   /* Theme transition */
   --theme-switch-x: 50%;
@@ -160,11 +158,10 @@
   /* Hero 标题 */
 
   /* 🔒 SENSEI 尺寸约束 */
-  --topbar-height: 64px;
+  --topbar-height: 56px;
   --sidebar-width: 240px;
   --sidebar-width-collapsed: 72px;
   --btn-height: 32px;
-  /* Native App Standard */
   --btn-height-lg: 38px;
   --robot-size: 36px;
   --logo-size: 32px;
@@ -259,24 +256,24 @@
   --muted-strong: #374151;
   --muted-foreground: #6B7280;
 
-  /* Accent - Core Green */
-  --accent: #00a100;
-  --accent-hover: #008f00;
-  --accent-muted: #007a00;
-  --accent-subtle: rgba(0, 161, 0, 0.08);
-  --accent-glow: rgba(0, 161, 0, 0.12);
+  /* Accent - Indigo (Polar) */
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-muted: #4f46e5;
+  --accent-subtle: rgba(99, 102, 241, 0.08);
+  --accent-glow: rgba(99, 102, 241, 0.12);
 
   --accent-blue: #2563EB;
   --accent-teal: #059669;
   --accent-purple: #9333EA;
   --accent-yellow: #D97706;
 
-  --primary: #00a100;
+  --primary: #6366f1;
   --primary-foreground: #FFFFFF;
 
-  /* Secondary Accent - Battle Orange */
-  --accent-secondary: #FF4500;
-  --accent-secondary-subtle: rgba(255, 69, 0, 0.12);
+  /* Secondary Accent - Blue */
+  --accent-secondary: #3b82f6;
+  --accent-secondary-subtle: rgba(59, 130, 246, 0.12);
 
   --ring: #D0D0D0;
 
@@ -303,7 +300,7 @@
   --danger-subtle: rgba(220, 38, 38, 0.1);
   --info: #0EA5E9;
 
-  --focus: rgba(0, 161, 0, 0.3);
+  --focus: rgba(99, 102, 241, 0.3);
   --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--ring);
   --focus-glow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ring), 0 0 12px var(--accent-glow);
 
@@ -571,7 +568,7 @@ a:hover {
 .brand-pix,
 .aeonsage-brand,
 [data-brand="aeonsage"] {
-  font-family: var(--font-pix);
+  font-family: var(--font-pixel);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   line-height: 1.6;
@@ -614,7 +611,7 @@ a:hover {
 
 /* PIX 标题样式（用于页面大标题） */
 .pix-title {
-  font-family: var(--font-pix);
+  font-family: var(--font-pixel);
   font-size: 24px;
   line-height: 1.8;
   letter-spacing: 0.15em;
@@ -628,7 +625,7 @@ a:hover {
 
 /* PIX 副标题 */
 .pix-subtitle {
-  font-family: var(--font-pix);
+  font-family: var(--font-pixel);
   font-size: 12px;
   line-height: 1.8;
   letter-spacing: 0.1em;
@@ -639,7 +636,7 @@ a:hover {
 
 /* PIX 按钮文字 */
 .pix-button-text {
-  font-family: var(--font-pix);
+  font-family: var(--font-pixel);
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -679,20 +676,19 @@ a:hover {
 }
 
 .brand-title {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 40%, var(--accent-muted) 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #CACACA 50%, #888888 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
   letter-spacing: 0.15em;
-  /* Match layout.css */
 }
 
 .topbar {
   border-bottom: 1px solid var(--border-subtle) !important;
   background: var(--bg) !important;
   backdrop-filter: blur(12px) !important;
-  height: var(--topbar-height, 64px) !important;
+  height: var(--topbar-height, 56px) !important;
 }
 
 /* Industrial Card Enhanced */
@@ -736,7 +732,7 @@ a:hover {
   border-radius: 34px;
 }
 
-.slider:before {
+.slider::before {
   position: absolute;
   content: "";
   height: 18px;
@@ -757,7 +753,7 @@ input:focus+.slider {
   box-shadow: 0 0 1px var(--accent);
 }
 
-input:checked+.slider:before {
+input:checked+.slider::before {
   transform: translateX(20px);
   background-color: var(--accent);
 }

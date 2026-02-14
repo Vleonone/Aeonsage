@@ -24,7 +24,7 @@ const SECTIONS: ManualSection[] = [
     icon: "zap",
     content: (lang) => lang === 'zh-CN' ? html`
       <div class="manual-hero">
-        <img src="/Aeon_logo.svg" class="manual-logo" alt="AeonSage Logo" />
+        <img src="/aeonsage-logo02.svg" class="manual-logo" alt="AeonSage Logo" />
         <div class="manual-hero-text">
             <h2>欢迎使用 AeonSage 智能体操作系统</h2>
             <p>AeonSage 是一个专为隐私保护、主权自治和高级 AI 编排而设计的下一代智能体操作系统 (Sovereign Intelligence OS)。</p>
@@ -54,7 +54,7 @@ const SECTIONS: ManualSection[] = [
       </ul>
     ` : html`
       <div class="manual-hero">
-        <img src="/Aeon_logo.svg" class="manual-logo" alt="AeonSage Logo" />
+        <img src="/aeonsage-logo02.svg" class="manual-logo" alt="AeonSage Logo" />
         <div class="manual-hero-text">
             <h2>Welcome to AeonSage OS</h2>
             <p>AeonSage is a next-generation Sovereign Intelligence OS designed for privacy, autonomy, and advanced AI orchestration.</p>
@@ -528,11 +528,11 @@ export function renderUserManual(props: UserManualProps) {
       }
       .callout.tip {
         border-color: var(--ok);
-        background: rgba(0, 255, 136, 0.05);
+        background: var(--ok-subtle);
       }
       .callout.warning {
         border-color: var(--warn);
-        background: rgba(255, 184, 0, 0.05);
+        background: var(--warn-subtle);
       }
       .callout strong {
         color: var(--text);

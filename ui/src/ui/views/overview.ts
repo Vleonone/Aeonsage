@@ -280,13 +280,13 @@ export function renderOverview(props: OverviewProps) {
                 padding: 2px 6px;
                 border-radius: 4px;
                 font-weight: bold;
-                background: #333;
-                color: #888;
+                background: var(--bg-subtle);
+                color: var(--text-muted);
                 white-space: nowrap;
             }
             .vdid-status-badge.registered {
                 background: var(--accent);
-                color: #000;
+                color: var(--primary-foreground);
             }
             .vdid-details {
                 flex: 1;
@@ -299,7 +299,7 @@ export function renderOverview(props: OverviewProps) {
             }
             .vdid-label {
                 font-size: 12px;
-                color: rgba(255,255,255,0.5);
+                color: var(--text-muted);
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
             }
@@ -338,8 +338,8 @@ export function renderOverview(props: OverviewProps) {
                 align-items: center;
                 padding: 6px 8px;
                 border-radius: 8px;
-                background: rgba(255, 255, 255, 0.04);
-                border: 1px solid rgba(255, 255, 255, 0.06);
+                background: var(--card-transparent);
+                border: 1px solid var(--border-subtle);
                 font-size: 12px;
             }
             .vdid-wallet-chain {
@@ -372,7 +372,7 @@ export function renderOverview(props: OverviewProps) {
             .vdid-placeholder-visual {
                 width: 140px;
                 align-self: stretch;
-                background: linear-gradient(135deg, rgba(0,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
+                background: linear-gradient(135deg, var(--accent-subtle) 0%, var(--bg-accent) 100%);
                 position: relative;
                 display: flex;
                 align-items: center;
@@ -385,7 +385,7 @@ export function renderOverview(props: OverviewProps) {
                 display: grid;
                 place-items: center;
                 opacity: 0.75;
-                filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.25));
+                filter: drop-shadow(0 0 8px var(--accent-glow));
                 position: absolute;
             }
             .vdid-placeholder-logo .vdid-logo {
@@ -412,7 +412,7 @@ export function renderOverview(props: OverviewProps) {
                 left: 0;
                 right: 0;
                 height: 2px;
-                background: rgba(0,255,255,0.2);
+                background: var(--accent-subtle);
                 animation: scan 3s infinite linear;
             }
             @keyframes scan {

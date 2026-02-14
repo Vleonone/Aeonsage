@@ -1,269 +1,391 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>aeonsage</title><meta name="description" content="Documentation for aeonsage"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">aeonsage</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>aeonsage</h1></div><div class="tsd-panel tsd-typography"><div align="center">
+  <a href="https://aeonsage.org">
+    <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/AeonSage_letter_logo.svg" alt="AEONSAGE" width="480" loading="eager">
+  </a>
+<p><br><br></p>
+<p><strong>The Sovereign Intelligence Operating System</strong><br>
+Identity-first. Self-hosted. Deterministic.</p>
+  <br>
+<p><a href="https://github.com/velonone/Aeonsage/releases"><img src="https://img.shields.io/badge/RELEASE-v2026.2-000000?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Release"></a>
+<a href="https://github.com/velonone/Aeonsage"><img src="https://img.shields.io/badge/OSS-Aeonsage-000000?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="OSS"></a>
+<a href="./LICENSE"><img src="https://img.shields.io/badge/LICENSE-Non--Commercial-000000?style=for-the-badge&amp;logo=gitbook&amp;logoColor=white" alt="License"></a>
+<a href="https://aeonsage.org/docs"><img src="https://img.shields.io/badge/DOCS-aeonsage.org-000000?style=for-the-badge&amp;logo=readme&amp;logoColor=white" alt="Docs"></a>
+<a href="./README_ZH.md"><img src="https://img.shields.io/badge/LANG-%E4%B8%AD%E6%96%87-000000?style=for-the-badge&amp;logo=google-translate&amp;logoColor=white" alt="Language"></a></p>
+</div>
+<hr>
+<blockquote>
+<p><strong>Your AI. Your hardware. Your rules.</strong></p>
+<p>AeonSage is a self-hosted AI agent operating system that puts identity and privacy at the kernel level. Unlike cloud-dependent chatbots, AeonSage runs entirely on your hardware — your data never leaves your machine.</p>
+</blockquote>
+<hr>
+<h2 id="contents" class="tsd-anchor-link">Contents<a href="#contents" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#connectivity-matrix">Connectivity</a></li>
+<li><a href="#desktop-client">Desktop Client</a></li>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#editions">Editions</a></li>
+<li><a href="#tech-stack">Tech Stack</a></li>
+<li><a href="#ecosystem-partners">Ecosystem</a></li>
+<li><a href="#license--legal">License</a></li>
+</ul>
+<hr>
+<h2 id="architecture" class="tsd-anchor-link">Architecture<a href="#architecture" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>AeonSage implements a strict <strong>Kernel-Ring Architecture</strong> with 58+ modules across 6 layers.</p>
+<pre><code><span class="hl-0">                         </span><span class="hl-1">AeonSage</span><span class="hl-0"> </span><span class="hl-1">Gateway</span><br/><span class="hl-0">  ┌──────────┬──────────┬──────────┬──────────┬─────────────┐</span><br/><span class="hl-0">  │  </span><span class="hl-1">Ring</span><span class="hl-0"> </span><span class="hl-2">0</span><span class="hl-0">  │  </span><span class="hl-1">Ring</span><span class="hl-0"> </span><span class="hl-2">1</span><span class="hl-0">  │  </span><span class="hl-1">Ring</span><span class="hl-0"> </span><span class="hl-2">2</span><span class="hl-0">  │  </span><span class="hl-1">Ring</span><span class="hl-0"> </span><span class="hl-2">3</span><span class="hl-0">  │   </span><span class="hl-1">Ring</span><span class="hl-0"> </span><span class="hl-2">4</span><span class="hl-0">    │</span><br/><span class="hl-0">  │  </span><span class="hl-1">Kernel</span><span class="hl-0">  │  </span><span class="hl-1">Router</span><span class="hl-0">  │  </span><span class="hl-1">Skills</span><span class="hl-0">  │ </span><span class="hl-1">Channels</span><span class="hl-0"> │  </span><span class="hl-1">Interface</span><span class="hl-0">  │</span><br/><span class="hl-0">  ├──────────┼──────────┼──────────┼──────────┼─────────────┤</span><br/><span class="hl-0">  │ </span><span class="hl-1">Identity</span><span class="hl-0"> │ </span><span class="hl-1">Multi</span><span class="hl-0">-</span><span class="hl-3">LLM</span><span class="hl-0">│ </span><span class="hl-2">54</span><span class="hl-0">+ </span><span class="hl-1">Tools</span><span class="hl-0">│ </span><span class="hl-2">30</span><span class="hl-0">+ </span><span class="hl-1">Plat</span><span class="hl-0"> │ </span><span class="hl-1">Cockpit</span><span class="hl-0"> </span><span class="hl-3">UI</span><span class="hl-0">  │</span><br/><span class="hl-0">  │ </span><span class="hl-1">State</span><span class="hl-0">    │ </span><span class="hl-1">Tiered</span><span class="hl-0">   │ </span><span class="hl-3">MCP</span><span class="hl-0"> </span><span class="hl-3">SDK</span><span class="hl-0">  │ </span><span class="hl-1">Protocol</span><span class="hl-0"> │ </span><span class="hl-1">Desktop</span><span class="hl-0"> </span><span class="hl-1">App</span><span class="hl-0"> │</span><br/><span class="hl-0">  │ </span><span class="hl-1">Security</span><span class="hl-0"> │ </span><span class="hl-1">Fallback</span><span class="hl-0"> │ </span><span class="hl-1">Plugin</span><span class="hl-0">   │ </span><span class="hl-1">Bridges</span><span class="hl-0">  │ </span><span class="hl-1">WebSocket</span><span class="hl-0">   │</span><br/><span class="hl-0">  └──────────┴──────────┴──────────┴──────────┴─────────────┘</span><br/><span class="hl-0">                         </span><span class="hl-2">107</span><span class="hl-0"> </span><span class="hl-3">RPC</span><span class="hl-0"> </span><span class="hl-1">Methods</span>
+</code><button>Copy</button></pre>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AeonSage Documentation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <style>
-    :root {
-      --bg: #000000;
-      --bg-elevated: #1A1A1A;
-      --card: #1C1C1C;
-      --text: #FFFFFF;
-      --muted: #888888;
-      --border: #1F1F1F;
-      --border-strong: #2A2A2A;
-      --accent: #B33D00;
-      --accent-hover: #CC4500;
-      --ok: #00FF88;
-      --radius-md: 12px;
-      --radius-lg: 24px;
-      --font-display: "JetBrains Mono", "Space Grotesk", monospace;
-      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+<h3 id="sovereign-transformation" class="tsd-anchor-link">Sovereign Transformation<a href="#sovereign-transformation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Every user intent is treated as a verifiable transaction — signed, routed, executed, and logged.</p>
+<pre><code class="mermaid">graph LR
+    subgraph "Legacy (Entropy)"
+        Raw[Stochastic LLM]
+        Leak[Context Leak]
+        Cost[Unbounded Cost]
+        Raw --> Leak
+        Raw --> Cost
+    end
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    Transaction((Sovereign<br>Kernel))
 
-    html,
-    body {
-      height: 100%;
-    }
+    subgraph "AeonSage (Order)"
+        VDID[Verified ID]
+        Route[Cognitive Router]
+        Audit[Immutable Log]
+    end
 
-    body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      -webkit-font-smoothing: antialiased;
-    }
+    Raw --> Transaction
+    Transaction --> VDID
+    Transaction --> Route
+    Route --> Audit
 
-    .container {
-      max-width: 720px;
-      text-align: center;
-    }
+    style Transaction fill:#000,stroke:#fff,stroke-width:2px,color:#fff
+    style VDID fill:#10B981,stroke:#333,color:#000
+    style Route fill:#0066FF,stroke:#333,color:#fff
+</code><button type="button">Copy</button></pre>
 
-    .brand {
-      font-family: var(--font-display);
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 40%, #802B00 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+<h3 id="core-capabilities" class="tsd-anchor-link">Core Capabilities<a href="#core-capabilities" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Layer</th>
+<th style="text-align:left">Component</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Ring 0</strong></td>
+<td style="text-align:left">Sovereign Kernel</td>
+<td style="text-align:left">Deterministic state machine, VDID identity, active defense wall, audit logger</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Ring 1</strong></td>
+<td style="text-align:left">Cognitive Router</td>
+<td style="text-align:left">Multi-LLM routing (local/cloud), tiered complexity analysis, provider fallback cascade</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Ring 2</strong></td>
+<td style="text-align:left">Skill Extensions</td>
+<td style="text-align:left">54+ built-in skills, MCP protocol support, Plugin SDK for custom extensions</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Ring 3</strong></td>
+<td style="text-align:left">Channel Bridges</td>
+<td style="text-align:left">30+ native protocol bridges — WhatsApp, Telegram, Discord, Slack, Signal, Email &amp; more</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Ring 4</strong></td>
+<td style="text-align:left">Interface Layer</td>
+<td style="text-align:left">Lit 3 Cockpit UI, Tauri v2 Desktop Client, 107 WebSocket RPC methods</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="connectivity-matrix" class="tsd-anchor-link">Connectivity Matrix<a href="#connectivity-matrix" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Native protocol bridges — no third-party automation required.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Protocol</th>
+<th style="text-align:left">Implementation</th>
+<th style="text-align:left">Capabilities</th>
+<th style="text-align:center">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>WhatsApp</strong></td>
+<td style="text-align:left">Baileys (wacli)</td>
+<td style="text-align:left">Multi-device, Media, Voice Notes</td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Active-2ea44f?style=flat-square" alt="Active"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Telegram</strong></td>
+<td style="text-align:left">MTProto / Bot API</td>
+<td style="text-align:left">Secret Chats, Channels, Admin Ops</td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Active-2ea44f?style=flat-square" alt="Active"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Discord</strong></td>
+<td style="text-align:left">WebSocket Gateway</td>
+<td style="text-align:left">Voice, Slash Commands, Roles</td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Active-2ea44f?style=flat-square" alt="Active"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Slack</strong></td>
+<td style="text-align:left">Enterprise Grid</td>
+<td style="text-align:left">Threads, File Analysis, App Home</td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Active-2ea44f?style=flat-square" alt="Active"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Signal</strong></td>
+<td style="text-align:left">libsignal</td>
+<td style="text-align:left">E2EE Messaging</td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Active-2ea44f?style=flat-square" alt="Active"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Email</strong></td>
+<td style="text-align:left">SMTP / IMAP</td>
+<td style="text-align:left">Parsing, Drafting, Attachments</td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Active-2ea44f?style=flat-square" alt="Active"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>LINE</strong></td>
+<td style="text-align:left">Messaging API</td>
+<td style="text-align:left">Rich Menus, Flex Messages</td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Active-2ea44f?style=flat-square" alt="Active"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Matrix</strong></td>
+<td style="text-align:left">matrix-js-sdk</td>
+<td style="text-align:left">Federation, E2EE Rooms</td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Active-2ea44f?style=flat-square" alt="Active"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>30+ channels</strong> supported in total. See the full list in the <a href="https://aeonsage.org/docs">documentation</a>.</p>
+</blockquote>
+<hr>
+<h2 id="desktop-client" class="tsd-anchor-link">Desktop Client<a href="#desktop-client" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>The AeonSage Desktop App is built with <strong>Tauri v2</strong> (Rust) + <strong>React 19</strong> — delivering a native experience at ~10 MB (vs ~150 MB for Electron).</p>
+<ul>
+<li><strong>Agent Visualization</strong> — Real-time execution flow, tool calls, and reasoning traces</li>
+<li><strong>Visual Workflows</strong> — Drag-and-drop multi-agent workflow builder</li>
+<li><strong>BYOK</strong> — Bring Your Own Key, use any model provider with your own API keys</li>
+<li><strong>Secure Gateway</strong> — Tauri Sidecar manages the Node.js gateway process</li>
+<li><strong>Cross-Platform</strong> — Windows, macOS, Linux</li>
+</ul>
+<hr>
+<h2 id="quick-start" class="tsd-anchor-link">Quick Start<a href="#quick-start" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="system-requirements" class="tsd-anchor-link">System Requirements<a href="#system-requirements" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li><strong>OS</strong>: Windows 11 / macOS 13+ / Linux Kernel 5.15+</li>
+<li><strong>Runtime</strong>: Node.js v22.0.0+ (Active LTS)</li>
+</ul>
+<h3 id="portable-windows" class="tsd-anchor-link">Portable (Windows)<a href="#portable-windows" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ol>
+<li>Download <strong><a href="https://github.com/velonone/Aeonsage/releases/latest/download/AeonSage_OSS.zip">AeonSage_OSS.zip</a></strong></li>
+<li>Extract and run <code>AeonSage.bat</code></li>
+</ol>
+<h3 id="developer-install" class="tsd-anchor-link">Developer Install<a href="#developer-install" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code class="bash"><span class="hl-4"># Clone the repository</span><br/><span class="hl-5">git</span><span class="hl-0"> </span><span class="hl-6">clone</span><span class="hl-0"> </span><span class="hl-6">https://github.com/velonone/Aeonsage.git</span><br/><span class="hl-5">cd</span><span class="hl-0"> </span><span class="hl-6">Aeonsage</span><br/><br/><span class="hl-4"># Install dependencies</span><br/><span class="hl-5">pnpm</span><span class="hl-0"> </span><span class="hl-6">install</span><br/><br/><span class="hl-4"># Initialize configuration</span><br/><span class="hl-5">pnpm</span><span class="hl-0"> </span><span class="hl-6">run</span><span class="hl-0"> </span><span class="hl-6">init</span><br/><br/><span class="hl-4"># Launch the gateway</span><br/><span class="hl-5">pnpm</span><span class="hl-0"> </span><span class="hl-6">start</span>
+</code><button type="button">Copy</button></pre>
 
-    .tagline {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 2.5rem;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 2rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    .card h2 {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
-    .card p {
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(0, 255, 136, 0.1);
-      border: 1px solid rgba(0, 255, 136, 0.2);
-      border-radius: 9999px;
-      padding: 0.4rem 1rem;
-      font-size: 0.75rem;
-      font-family: var(--font-display);
-      color: var(--ok);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1.5rem;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--ok);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.4;
-      }
-    }
-
-    .links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent);
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      transition: background 0.16s ease, transform 0.16s ease;
-    }
-
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-    }
-
-    .btn.secondary {
-      background: transparent;
-      border: 1px solid var(--border-strong);
-      color: var(--muted);
-    }
-
-    .btn.secondary:hover {
-      border-color: var(--accent);
-      color: var(--text);
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .feature {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      text-align: left;
-    }
-
-    .feature-title {
-      font-family: var(--font-display);
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .feature-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    footer {
-      margin-top: 2rem;
-      color: #444;
-      font-size: 0.75rem;
-      font-family: var(--font-display);
-      letter-spacing: 0.05em;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <h1 class="brand">AEONSAGE</h1>
-    <p class="tagline">Sovereign Intelligence Infrastructure</p>
-
-    <div class="card">
-      <div class="status">
-        <span class="status-dot"></span>
-        System Online
-      </div>
-      <h2>Documentation Portal</h2>
-      <p>
-        Comprehensive guides for deploying and operating AeonSage -
-        the self-hosted cognitive OS for unified AI orchestration.
-      </p>
-      <div class="links">
-        <a href="https://github.com/Vleonone/AeonSage-Silicon-Intelligence" class="btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-          </svg>
-          GitHub Repository
-        </a>
-        <a href="https://github.com/Vleonone/AeonSage-Silicon-Intelligence#-quick-install" class="btn secondary">
-          Quick Start Guide
-        </a>
-      </div>
-    </div>
-
-    <div class="features">
-      <div class="feature">
-        <div class="feature-title">Gateway</div>
-        <div class="feature-desc">Unified AI orchestration with 20+ LLM providers</div>
-      </div>
-      <div class="feature">
-        <div class="feature-title">Channels</div>
-        <div class="feature-desc">WhatsApp, Telegram, Discord, LINE integration</div>
-      </div>
-      <div class="feature">
-        <div class="feature-title">VDID</div>
-        <div class="feature-desc">Decentralized identity for sovereign bots</div>
-      </div>
-    </div>
-
-    <footer>
-      &copy; 2025-2026 AeonSage Collective // Sovereignty by Design
-    </footer>
-  </div>
-</body>
-
-</html>
+<p>The Cockpit UI will be available at <code>http://localhost:18789</code>.</p>
+<hr>
+<h2 id="editions" class="tsd-anchor-link">Editions<a href="#editions" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center">Free (OSS)</th>
+<th style="text-align:center">Pro</th>
+<th style="text-align:center">Enterprise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Price</strong></td>
+<td style="text-align:center">$0</td>
+<td style="text-align:center">$59/mo</td>
+<td style="text-align:center">Custom</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Deployment</strong></td>
+<td style="text-align:center">Self-hosted</td>
+<td style="text-align:center">Self-hosted + Cloud</td>
+<td style="text-align:center">Private Cloud</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cognitive Engine</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Multi-LLM Router</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>All Channels</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Visual Workflows</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>BYOK</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cockpit UI</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Desktop Client</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/4_Pages-E8832A?style=flat-square" alt="4"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/6_Pages-2ea44f?style=flat-square" alt="6"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Full-2ea44f?style=flat-square" alt="Full"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Max Workers</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/1-E8832A?style=flat-square" alt="1"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/3-2ea44f?style=flat-square" alt="3"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Unlimited-2ea44f?style=flat-square" alt="Unlimited"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CloudRelay</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Pro-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Finance Dashboard</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Pro-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>VDID Identity</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Pro-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Custom Themes</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Pro-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Security Dashboard</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Enterprise-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Enterprise-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Team Management</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Enterprise-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Enterprise-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Audit &amp; Compliance</strong></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Enterprise-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Enterprise-7B5EA7?style=flat-square" alt="No"></td>
+<td style="text-align:center"><img src="https://img.shields.io/badge/Included-2ea44f?style=flat-square" alt="Yes"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Free edition is fully functional for local AI.</strong> Pro unlocks cloud features and multi-agent workers.</p>
+</blockquote>
+<hr>
+<h2 id="tech-stack" class="tsd-anchor-link">Tech Stack<a href="#tech-stack" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Component</th>
+<th style="text-align:left">Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Runtime</td>
+<td style="text-align:left">Node.js 22+ (ESM)</td>
+</tr>
+<tr>
+<td style="text-align:left">Language</td>
+<td style="text-align:left">TypeScript 5.x</td>
+</tr>
+<tr>
+<td style="text-align:left">Backend</td>
+<td style="text-align:left">Hono + Express + WebSocket</td>
+</tr>
+<tr>
+<td style="text-align:left">Cockpit UI</td>
+<td style="text-align:left">Lit 3.3 + Vite 7</td>
+</tr>
+<tr>
+<td style="text-align:left">Desktop</td>
+<td style="text-align:left">Tauri v2 (Rust) + React 19</td>
+</tr>
+<tr>
+<td style="text-align:left">Auth</td>
+<td style="text-align:left">Social Login (Telegram / Google / GitHub) + VDID</td>
+</tr>
+<tr>
+<td style="text-align:left">Database</td>
+<td style="text-align:left">PostgreSQL + SQLite (local)</td>
+</tr>
+<tr>
+<td style="text-align:left">AI</td>
+<td style="text-align:left">Local (Ollama) + Cloud (OpenRouter, Anthropic, OpenAI, Google)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="ecosystem-partners" class="tsd-anchor-link">Ecosystem Partners<a href="#ecosystem-partners" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <a href="https://vdid.org"><img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/vdid-logo.svg" alt="VDID" width="100"></a><br>
+      <br><b>Identity Layer</b><br>VDID Network
+    </td>
+    <td align="center" width="50%">
+      <a href="https://velonlabs.com"><img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/velonlabs-logo.png" alt="VelonLabs" width="120"></a><br>
+      <br><b>Research & Engineering</b><br>VelonLabs
+    </td>
+  </tr>
+</table>
+<hr>
+<h2 id="license-legal" class="tsd-anchor-link">License &amp; Legal<a href="#license-legal" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p><strong>AeonSage Community Edition</strong> is distributed under the <strong>MIT License</strong> with a trademark addendum.</p>
+<blockquote>
+<p><strong>Trademark Notice</strong>: The &quot;AeonSage&quot; name, logo, and the &quot;VDID&quot; verification network are proprietary assets of VelonLabs. Commercial derivatives utilizing the AeonSage brand require an explicit enterprise license. The source code is open — the brand is not.</p>
+</blockquote>
+<hr>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Vleonone/Aeonsage/main/assets/AeonSage_letter_logo.svg" alt="AeonSage" width="200">
+<p><br><br></p>
+<p><strong>Engineered by <a href="https://velonlabs.com">VelonLabs</a> &amp; The AeonSage Core Team</strong></p>
+  <br>
+<p><a href="https://aeonsage.org"><img src="https://img.shields.io/badge/Website-aeonsage.org-000000?style=flat-square&amp;logo=safari&amp;logoColor=white" alt="Website"></a>
+<a href="https://t.me/aeonsage"><img src="https://img.shields.io/badge/Community-Telegram-000000?style=flat-square&amp;logo=telegram&amp;logoColor=white" alt="Telegram"></a>
+<a href="https://x.com/AeonSage"><img src="https://img.shields.io/badge/Follow-@AeonSage-000000?style=flat-square&amp;logo=x&amp;logoColor=white" alt="Twitter"></a></p>
+  <br>
+<p><sub>Copyright © 2025-2026 VelonLabs. All rights reserved.</sub></p>
+</div></div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#contents"><span>Contents</span></a><a href="#architecture"><span>Architecture</span></a><ul><li><a href="#sovereign-transformation"><span>Sovereign <wbr/>Transformation</span></a></li><li><a href="#core-capabilities"><span>Core <wbr/>Capabilities</span></a></li></ul><a href="#connectivity-matrix"><span>Connectivity <wbr/>Matrix</span></a><a href="#desktop-client"><span>Desktop <wbr/>Client</span></a><a href="#quick-start"><span>Quick <wbr/>Start</span></a><ul><li><a href="#system-requirements"><span>System <wbr/>Requirements</span></a></li><li><a href="#portable-windows"><span>Portable (<wbr/>Windows)</span></a></li><li><a href="#developer-install"><span>Developer <wbr/>Install</span></a></li></ul><a href="#editions"><span>Editions</span></a><a href="#tech-stack"><span>Tech <wbr/>Stack</span></a><a href="#ecosystem-partners"><span>Ecosystem <wbr/>Partners</span></a><a href="#license-legal"><span>License &amp; <wbr/>Legal</span></a></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">aeonsage</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>

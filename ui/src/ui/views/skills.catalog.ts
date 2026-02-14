@@ -102,18 +102,18 @@ export function renderSkillsCatalog(props: SkillsCatalogProps) {
         padding: 12px;
         border-radius: 10px;
         background: transparent;
-        border: 1px solid rgba(0, 255, 136, 0.2);
+        border: 1px solid var(--accent-subtle);
         cursor: pointer;
         transition: all 0.2s ease;
         margin-bottom: 8px;
       }
       .persona-card:hover {
-        border-color: rgba(0, 255, 136, 0.4);
+        border-color: var(--accent-glow);
       }
       .persona-card.selected {
         background: transparent;
-        border-color: var(--accent, #00FF88);
-        box-shadow: 0 0 12px rgba(0, 255, 136, 0.2);
+        border-color: var(--accent, #6366f1);
+        box-shadow: 0 0 12px var(--accent-subtle);
       }
       .persona-header {
         display: flex;
@@ -125,7 +125,7 @@ export function renderSkillsCatalog(props: SkillsCatalogProps) {
         width: 20px;
         height: 20px;
         opacity: 0.8;
-        color: var(--accent, #00FF88);
+        color: var(--accent, #6366f1);
       }
       .persona-icon svg {
         width: 100%;
@@ -148,8 +148,8 @@ export function renderSkillsCatalog(props: SkillsCatalogProps) {
         padding: 2px 6px;
         border-radius: 4px;
         background: transparent;
-        border: 1px solid rgba(0, 255, 136, 0.2);
-        color: var(--accent, #00FF88);
+        border: 1px solid var(--accent-subtle);
+        color: var(--accent, #6366f1);
       }
       .category-tabs {
         display: flex;
@@ -164,30 +164,30 @@ export function renderSkillsCatalog(props: SkillsCatalogProps) {
         padding: 8px 12px;
         border-radius: 8px;
         background: transparent;
-        border: 1px solid rgba(0, 255, 136, 0.2);
+        border: 1px solid var(--accent-subtle);
         cursor: pointer;
         transition: all 0.2s ease;
         font-size: 0.85rem;
         color: inherit;
       }
       .category-tab:hover {
-        border-color: rgba(0, 255, 136, 0.4);
-        color: var(--accent, #00FF88);
+        border-color: var(--accent-glow);
+        color: var(--accent, #6366f1);
       }
       .category-tab.active {
         background: transparent;
-        border-color: var(--accent, #00FF88);
-        color: var(--accent, #00FF88);
-        box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
+        border-color: var(--accent, #6366f1);
+        color: var(--accent, #6366f1);
+        box-shadow: 0 0 8px var(--accent-subtle);
       }
       .category-tab.special-hub {
-         border-color: var(--accent, #00FF88);
-         color: var(--accent, #00FF88);
-         background: rgba(0, 255, 136, 0.1);
+         border-color: var(--accent, #6366f1);
+         color: var(--accent, #6366f1);
+         background: var(--accent-subtle);
       }
       .category-tab.special-hub:hover {
-         background: rgba(0, 255, 136, 0.15);
-         box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+         background: var(--accent-glow);
+         box-shadow: 0 0 10px var(--accent-glow);
       }
 
       .category-tab svg {
@@ -290,7 +290,7 @@ export function renderSkillsCatalog(props: SkillsCatalogProps) {
         display: flex;
         gap: 2px;
         background: transparent;
-        border: 1px solid rgba(0, 255, 136, 0.2);
+        border: 1px solid var(--accent-subtle);
         padding: 3px;
         border-radius: 6px;
       }
@@ -313,13 +313,13 @@ export function renderSkillsCatalog(props: SkillsCatalogProps) {
       }
       .view-btn:hover {
         opacity: 0.7;
-        color: var(--accent, #00FF88);
+        color: var(--accent, #6366f1);
       }
       .view-btn.active {
         background: transparent;
-        border: 1px solid var(--accent, #00FF88);
+        border: 1px solid var(--accent, #6366f1);
         opacity: 1;
-        color: var(--accent, #00FF88);
+        color: var(--accent, #6366f1);
       }
       .section-title {
         display: flex;
@@ -463,7 +463,7 @@ function renderPersonaCard(persona: Persona, props: SkillsCatalogProps) {
       <div class="persona-header">
         <span class="persona-icon">${persona.icon}</span>
         <span>${persona.name}</span>
-        ${isActive ? html`<span style="margin-left: auto; font-size: 0.65rem; padding: 2px 6px; background: var(--accent, #00FF88); color: #000; border-radius: 4px;">ACTIVE</span>` : nothing}
+        ${isActive ? html`<span style="margin-left: auto; font-size: 0.65rem; padding: 2px 6px; background: var(--accent, #6366f1); color: #000; border-radius: 4px;">ACTIVE</span>` : nothing}
       </div>
       <div class="persona-desc">${persona.description}</div>
       <div class="persona-traits">
@@ -473,10 +473,10 @@ function renderPersonaCard(persona: Persona, props: SkillsCatalogProps) {
       </div>
       
       <!-- Always show skill count and Apply/Clear button for better UX -->
-      <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(0, 255, 136, 0.1);">
+      <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--accent-subtle);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
           <span style="font-size: 0.75rem; opacity: 0.6;">${skillCount} skills included</span>
-          ${isSelected ? html`<span style="font-size: 0.7rem; color: var(--accent, #00FF88);">✓ Selected</span>` : nothing}
+          ${isSelected ? html`<span style="font-size: 0.7rem; color: var(--accent, #6366f1);">✓ Selected</span>` : nothing}
         </div>
         ${isActive ? html`
           <!-- Clear Active Persona Button -->
@@ -497,7 +497,7 @@ function renderPersonaCard(persona: Persona, props: SkillsCatalogProps) {
           <button 
             class="btn ${isSelected ? 'primary' : ''}" 
             style="width: 100%; font-size: 0.8rem; padding: 8px; display: flex; align-items: center; justify-content: center; gap: 6px;
-                   ${isSelected ? 'background: var(--accent, #00FF88); color: #000; border-color: var(--accent, #00FF88);' : ''}"
+                   ${isSelected ? 'background: var(--accent, #6366f1); color: #000; border-color: var(--accent, #6366f1);' : ''}"
             @click=${(e: Event) => {
         e.stopPropagation();
         if (!isSelected) {

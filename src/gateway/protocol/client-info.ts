@@ -7,6 +7,7 @@ export const GATEWAY_CLIENT_IDS = {
   MACOS_APP: "aeonsage-macos",
   IOS_APP: "aeonsage-ios",
   ANDROID_APP: "aeonsage-android",
+  DESKTOP_APP: "aeonsage-desktop",
   NODE_HOST: "node-host",
   TEST: "test",
   FINGERPRINT: "fingerprint",

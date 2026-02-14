@@ -21,6 +21,7 @@ import { renderIde, DEFAULT_IDE_STATE } from "./views/ide";
 import { renderExecApprovalPrompt } from "./views/exec-approval";
 import { renderUserManual } from "./views/user-manual";
 import { renderMarketplace } from "./views/marketplace";
+import { renderWorkflowCanvas } from "./views/workflow-canvas";
 
 import {
   approveDevicePairing,
@@ -128,8 +129,8 @@ export function renderApp(state: AppViewState) {
           >
             <span class="nav-collapse-toggle__icon">${icons.menu}</span>
           </button>
-          <div class="brand" style="display: flex; align-items: center; gap: 8px;">
-            <img src="/octopus_icon.svg" alt="AeonSage Logo" class="brand-logo" style="height: 48px; width: 48px;" />
+          <div class="brand">
+            <img src="/aeonsage-logo02.svg" alt="AeonSage Logo" class="brand-logo" />
             <div class="brand-text">
               <div class="brand-title">AEONSAGE</div>
             </div>
@@ -531,7 +532,12 @@ export function renderApp(state: AppViewState) {
             (state as any).selectedCategory = category;
           },
         },
-        workflow: {
+      })
+      : nothing}
+
+
+        ${state.tab === "workflow"
+      ? renderWorkflowCanvas({
           state: state.workflowState || createWorkflowState(),
           onRefresh: async () => {
             if (!state.client || !state.connected) return;
@@ -555,10 +561,8 @@ export function renderApp(state: AppViewState) {
               state.requestUpdate();
             }
           },
-        },
-      })
+        })
       : nothing}
-
 
         ${state.tab === "system"
       ? renderSystem({
@@ -809,15 +813,6 @@ export function renderApp(state: AppViewState) {
 
       </main>
       ${renderExecApprovalPrompt(state)}
-      
-      <!-- Global Footer -->
-      <footer class="app-footer">
-        <span>© 2026 AeonSage</span>
-        <span class="footer-divider">•</span>
-        <a href="https://hub.aeonsage.org" target="_blank" rel="noopener">Skill Hub</a>
-        <span class="footer-divider">•</span>
-        <a href="https://docs.aeonsage.org" target="_blank" rel="noopener">Docs</a>
-      </footer>
     </div>
   `;
 }

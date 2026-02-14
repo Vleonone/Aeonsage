@@ -13,7 +13,7 @@ import { loadUsageCost } from "./controllers/usage";
 import { loadTtsStatus } from "./controllers/tts";
 import { inferBasePathFromPathname, normalizeBasePath, normalizePath, pathForTab, tabFromPath, type Tab } from "./navigation";
 import { saveSettings, type UiSettings } from "./storage";
-import { resolveTheme, type ResolvedTheme, type ThemeMode } from "./theme";
+import { isDarkTheme, resolveTheme, type ResolvedTheme, type ThemeMode } from "./theme";
 import { startThemeTransition, type ThemeTransitionContext } from "./theme-transition";
 import { scheduleChatScroll, scheduleLogsScroll } from "./app-scroll";
 import { startLogsPolling, stopLogsPolling, startDebugPolling, stopDebugPolling } from "./app-polling";
@@ -204,7 +204,7 @@ export function applyResolvedTheme(host: SettingsHost, resolved: ResolvedTheme) 
   if (typeof document === "undefined") return;
   const root = document.documentElement;
   root.dataset.theme = resolved;
-  root.style.colorScheme = resolved;
+  root.style.colorScheme = isDarkTheme(resolved) ? "dark" : "light";
 }
 
 export function attachThemeListener(host: SettingsHost) {

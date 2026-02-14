@@ -46,10 +46,11 @@ export interface I18nTexts {
     docs: string;
     usage: string;
     tts: string;
-    // SENSEI: Consolidated Navigation Keys
+    // Consolidated Navigation Keys
     dashboard: string;
     connect: string;
     intelligence: string;
+    workflow: string;
     security: string;
     system: string;
   };
@@ -70,6 +71,7 @@ export interface I18nTexts {
     usage: string;
     tts: string;
     security: string;
+    workflow: string;
   };
 
   // 安全 (Security)
@@ -417,6 +419,11 @@ export interface I18nTexts {
     runtime: string;
     waitingForWorkflow: string;
     startFromChat: string;
+    // Bot Diary
+    botDiary: string;
+    statusGood: string;
+    activeToday: string;
+    weekDays: string[];
   };
 
   // 技能市场 (Skill Marketplace)
@@ -562,6 +569,7 @@ export const translations: Record<Language, I18nTexts> = {
       dashboard: '仪表盘',
       connect: '连接',
       intelligence: '智能',
+      workflow: '工作流',
       security: '安全',
       system: '系统',
     },
@@ -580,6 +588,7 @@ export const translations: Record<Language, I18nTexts> = {
       logs: '实时查看网关文件日志',
       debug: '网关快照、事件和手动 RPC 调用',
       security: 'Kill Switch、安全门、VDID 身份',
+      workflow: 'Agent 可视化工作台、实时任务流',
     },
     overview: {
       title: '控制面板',
@@ -895,6 +904,10 @@ export const translations: Record<Language, I18nTexts> = {
       runtime: '运行时间',
       waitingForWorkflow: '等待工作流启动',
       startFromChat: '在 Chat 中发起任务后,节点将在此显示',
+      botDiary: 'Bot 日记',
+      statusGood: '状态良好',
+      activeToday: '今日活跃',
+      weekDays: ['日', '一', '二', '三', '四', '五', '六'],
     },
     marketplace: {
       title: '技能市场',
@@ -1023,6 +1036,7 @@ export const translations: Record<Language, I18nTexts> = {
       dashboard: 'Dashboard',
       connect: 'Connect',
       intelligence: 'Intelligence',
+      workflow: 'Workflow',
       security: 'Security',
       system: 'System',
     },
@@ -1041,6 +1055,7 @@ export const translations: Record<Language, I18nTexts> = {
       logs: 'Live tail of the gateway file logs.',
       debug: 'Gateway snapshots, events, and manual RPC calls.',
       security: 'Kill Switch, Safety Gates, VDID Identity',
+      workflow: 'Agent visual workbench, live task flow',
     },
     overview: {
       title: 'Dashboard',
@@ -1356,6 +1371,10 @@ export const translations: Record<Language, I18nTexts> = {
       runtime: 'Runtime',
       waitingForWorkflow: 'Waiting for workflow',
       startFromChat: 'Start a task in Chat to see nodes here',
+      botDiary: 'Bot Diary',
+      statusGood: 'All Good',
+      activeToday: 'Active today',
+      weekDays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
     },
     marketplace: {
       title: 'Skill Marketplace',

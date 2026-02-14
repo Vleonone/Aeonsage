@@ -58,25 +58,25 @@ const PIXEL_ICON_CSS = `
   .pix-icon.thinking { animation: pixel-blink 1.5s infinite; color: #a855f7; }
   .pix-icon.waiting { opacity: 0.5; color: #6b7280; }
   
-  /* Professional Dot Grid Canvas Background */
+  /* Professional Dot Grid Canvas Background — uses CSS tokens */
   .canvas-dot-grid {
-    background-color: #0d0d0f;
-    background-image: radial-gradient(circle, rgba(110, 86, 207, 0.15) 1px, transparent 1px);
+    background-color: var(--bg-accent, #0d0d0f);
+    background-image: radial-gradient(circle, var(--accent-subtle, rgba(99,102,241,0.15)) 1px, transparent 1px);
     background-size: 20px 20px;
     background-position: 10px 10px;
   }
   .canvas-dot-grid-dense {
-    background-color: #0d0d0f;
-    background-image: 
-      radial-gradient(circle, rgba(110, 86, 207, 0.12) 1px, transparent 1px),
-      radial-gradient(circle, rgba(110, 86, 207, 0.06) 1px, transparent 1px);
+    background-color: var(--bg-accent, #0d0d0f);
+    background-image:
+      radial-gradient(circle, var(--accent-subtle, rgba(99,102,241,0.12)) 1px, transparent 1px),
+      radial-gradient(circle, var(--accent-subtle, rgba(99,102,241,0.06)) 1px, transparent 1px);
     background-size: 20px 20px, 100px 100px;
     background-position: 0 0, 0 0;
   }
   .canvas-area {
-    background-color: #0a0a0c;
-    background-image: 
-      radial-gradient(circle at center, rgba(110, 86, 207, 0.08) 1.5px, transparent 1.5px);
+    background-color: var(--bg-accent, #0a0a0c);
+    background-image:
+      radial-gradient(circle at center, var(--accent-subtle, rgba(99,102,241,0.08)) 1.5px, transparent 1.5px);
     background-size: 24px 24px;
     position: relative;
   }
@@ -84,7 +84,7 @@ const PIXEL_ICON_CSS = `
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(110, 86, 207, 0.02) 100%);
+    background: linear-gradient(180deg, transparent 0%, var(--accent-subtle, rgba(99,102,241,0.02)) 100%);
     pointer-events: none;
   }
 `;
@@ -117,120 +117,123 @@ type TokenStats = {
 
 function renderTokenStatsSidebar(stats: TokenStats, activeNodes: any[], lang: Language) {
   const texts = t(lang);
+  const isActive = activeNodes.length > 0;
+  const dotColor = isActive ? 'var(--ok, #22c55e)' : 'var(--text-muted, #6b7280)';
+  const dateLocale = lang === 'zh-CN' ? 'zh-CN' : 'en-US';
   return html`
     <div style="
-      border-left: 1px solid rgba(255,255,255,0.08);
-      background: rgba(28,28,30,0.85);
+      border-left: 1px solid var(--border-subtle);
+      background: var(--bg-sidebar);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
       min-height: 450px;
     ">
-      <!-- iOS Section Header -->
+      <!-- Section Header -->
       <div style="
         padding: 16px;
         font-size: 13px;
         font-weight: 600;
-        color: rgba(255,255,255,0.6);
+        color: var(--text-muted);
         letter-spacing: 0.02em;
       ">
         ${texts.workflowCanvas.statsOverview}
       </div>
-      
-      <!-- Stats Cards - iOS Style -->
+
+      <!-- Stats Cards -->
       <div style="padding: 0 12px 16px; display: flex; flex-direction: column; gap: 10px;">
-        
+
         <!-- Token Card - Large -->
         <div style="
-          background: linear-gradient(135deg, rgba(124,107,255,0.2) 0%, rgba(110,86,207,0.15) 100%);
+          background: var(--accent-subtle);
           border-radius: 16px;
           padding: 16px;
-          border: 1px solid rgba(124,107,255,0.2);
+          border: 1px solid var(--accent-subtle);
         ">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <div style="font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 6px; font-weight: 500;">${texts.workflowCanvas.tokenUsage}</div>
-              <div style="font-size: 28px; font-weight: 700; color: #A78BFA; letter-spacing: -0.02em;">${formatNumber(stats.totalTokens)}</div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500;">${texts.workflowCanvas.tokenUsage}</div>
+              <div style="font-size: 28px; font-weight: 700; color: var(--accent-purple, #a855f7); letter-spacing: -0.02em;">${formatNumber(stats.totalTokens)}</div>
             </div>
             <div style="
               width: 44px; height: 44px;
-              background: rgba(124,107,255,0.3);
+              background: var(--accent-subtle);
               border-radius: 12px;
               display: flex; align-items: center; justify-content: center;
               font-size: 20px;
             ">📊</div>
           </div>
-          <div style="display: flex; gap: 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);">
+          <div style="display: flex; gap: 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-subtle);">
             <div style="flex: 1;">
-              <div style="font-size: 10px; color: rgba(255,255,255,0.4);">${texts.workflowCanvas.input}</div>
-              <div style="font-size: 14px; font-weight: 600; color: #60A5FA;">${stats.inputTokens !== null ? formatNumber(stats.inputTokens) : 'N/A'}</div>
+              <div style="font-size: 10px; color: var(--text-muted);">${texts.workflowCanvas.input}</div>
+              <div style="font-size: 14px; font-weight: 600; color: var(--accent-blue, #3b82f6);">${stats.inputTokens !== null ? formatNumber(stats.inputTokens) : 'N/A'}</div>
             </div>
             <div style="flex: 1;">
-              <div style="font-size: 10px; color: rgba(255,255,255,0.4);">${texts.workflowCanvas.output}</div>
-              <div style="font-size: 14px; font-weight: 600; color: #34D399;">${stats.outputTokens !== null ? formatNumber(stats.outputTokens) : 'N/A'}</div>
+              <div style="font-size: 10px; color: var(--text-muted);">${texts.workflowCanvas.output}</div>
+              <div style="font-size: 14px; font-weight: 600; color: var(--accent-teal, #10b981);">${stats.outputTokens !== null ? formatNumber(stats.outputTokens) : 'N/A'}</div>
             </div>
           </div>
         </div>
-        
+
         <!-- Stats Row -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
           <!-- Sessions -->
           <div style="
-            background: rgba(52,211,153,0.12);
+            background: var(--ok-subtle, rgba(34,197,94,0.1));
             border-radius: 14px;
             padding: 14px;
-            border: 1px solid rgba(52,211,153,0.15);
+            border: 1px solid var(--ok-subtle, rgba(34,197,94,0.15));
           ">
-            <div style="font-size: 10px; color: rgba(255,255,255,0.5); font-weight: 500;">${texts.workflowCanvas.sessions}</div>
-            <div style="font-size: 22px; font-weight: 700; color: #34D399; margin-top: 4px;">${stats.sessions}</div>
+            <div style="font-size: 10px; color: var(--text-muted); font-weight: 500;">${texts.workflowCanvas.sessions}</div>
+            <div style="font-size: 22px; font-weight: 700; color: var(--ok, #22c55e); margin-top: 4px;">${stats.sessions}</div>
           </div>
-          
+
           <!-- Completed -->
           <div style="
-            background: rgba(96,165,250,0.12);
+            background: var(--accent-2-subtle, rgba(99,102,241,0.1));
             border-radius: 14px;
             padding: 14px;
-            border: 1px solid rgba(96,165,250,0.15);
+            border: 1px solid var(--accent-2-subtle, rgba(99,102,241,0.15));
           ">
-            <div style="font-size: 10px; color: rgba(255,255,255,0.5); font-weight: 500;">${texts.workflowCanvas.completed}</div>
-            <div style="font-size: 22px; font-weight: 700; color: #60A5FA; margin-top: 4px;">${stats.completedTasks}</div>
+            <div style="font-size: 10px; color: var(--text-muted); font-weight: 500;">${texts.workflowCanvas.completed}</div>
+            <div style="font-size: 22px; font-weight: 700; color: var(--accent-blue, #3b82f6); margin-top: 4px;">${stats.completedTasks}</div>
           </div>
         </div>
-        
+
         <!-- Runtime -->
         <div style="
-          background: rgba(251,191,36,0.12);
+          background: var(--warn-subtle, rgba(245,158,11,0.1));
           border-radius: 14px;
           padding: 14px;
-          border: 1px solid rgba(251,191,36,0.15);
+          border: 1px solid var(--warn-subtle, rgba(245,158,11,0.15));
           display: flex;
           justify-content: space-between;
           align-items: center;
         ">
           <div>
-            <div style="font-size: 10px; color: rgba(255,255,255,0.5); font-weight: 500;">${texts.workflowCanvas.runtime}</div>
-            <div style="font-size: 18px; font-weight: 700; color: #FBBF24; margin-top: 2px;">${stats.runtime}</div>
+            <div style="font-size: 10px; color: var(--text-muted); font-weight: 500;">${texts.workflowCanvas.runtime}</div>
+            <div style="font-size: 18px; font-weight: 700; color: var(--warn, #f59e0b); margin-top: 2px;">${stats.runtime}</div>
           </div>
           <div style="font-size: 20px;">⏱️</div>
         </div>
-        
+
         <!-- Bot Diary Mini Calendar -->
         <div style="
-          background: rgba(255,255,255,0.04);
+          background: var(--card-transparent, rgba(255,255,255,0.04));
           border-radius: 14px;
           padding: 14px;
-          border: 1px solid rgba(255,255,255,0.06);
+          border: 1px solid var(--border-subtle);
           margin-top: 10px;
         ">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-            <div style="font-size: 11px; color: rgba(255,255,255,0.5); font-weight: 500;">📅 Bot 日记</div>
-            <div style="font-size: 11px; color: rgba(255,255,255,0.4);">${new Date().toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' })}</div>
+            <div style="font-size: 11px; color: var(--text-muted); font-weight: 500;">📅 ${texts.workflowCanvas.botDiary}</div>
+            <div style="font-size: 11px; color: var(--text-muted);">${new Date().toLocaleDateString(dateLocale, { month: 'short', day: 'numeric' })}</div>
           </div>
-          
+
           <!-- Week Mini View -->
           <div style="display: flex; gap: 4px; margin-bottom: 12px;">
-            ${['日', '一', '二', '三', '四', '五', '六'].map((d, i) => {
+            ${texts.workflowCanvas.weekDays.map((d: string, i: number) => {
     const today = new Date().getDay();
     const isToday = i === today;
     return html`
@@ -241,51 +244,51 @@ function renderTokenStatsSidebar(stats: TokenStats, activeNodes: any[], lang: La
                   border-radius: 8px;
                   font-size: 10px;
                   font-weight: ${isToday ? '600' : '400'};
-                  color: ${isToday ? '#000' : 'rgba(255,255,255,0.5)'};
-                  background: ${isToday ? 'rgba(255,255,255,0.9)' : 'transparent'};
+                  color: ${isToday ? 'var(--primary-foreground, #000)' : 'var(--text-muted)'};
+                  background: ${isToday ? 'var(--accent)' : 'transparent'};
                 ">${d}</div>
               `;
   })}
           </div>
-          
+
           <!-- Emotion Status -->
           <div style="
             display: flex;
             align-items: center;
             gap: 10px;
             padding: 10px;
-            background: rgba(255,255,255,0.03);
+            background: var(--card-transparent, rgba(255,255,255,0.03));
             border-radius: 10px;
           ">
             <div style="font-size: 24px;">😊</div>
             <div style="flex: 1;">
-              <div style="font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.85);">状态良好</div>
-              <div style="font-size: 10px; color: rgba(255,255,255,0.4);">今日活跃</div>
+              <div style="font-size: 12px; font-weight: 500; color: var(--text);">${texts.workflowCanvas.statusGood}</div>
+              <div style="font-size: 10px; color: var(--text-muted);">${texts.workflowCanvas.activeToday}</div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Live Activity Section -->
-      <div style="flex: 1; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.06);">
+      <div style="flex: 1; display: flex; flex-direction: column; border-top: 1px solid var(--border-subtle);">
         <div style="
           padding: 14px 16px 10px;
           font-size: 13px;
           font-weight: 600;
-          color: rgba(255,255,255,0.6);
+          color: var(--text-muted);
           display: flex;
           align-items: center;
           gap: 6px;
         ">
-          <span style="color: #34D399;">●</span> ${texts.workflowCanvas.liveActivity}
+          <span style="color: ${dotColor};">●</span> ${texts.workflowCanvas.liveActivity}
         </div>
-        
+
         <div style="flex: 1; overflow-y: auto; padding: 0 12px 12px;">
           ${activeNodes.length === 0 ? html`
             <div style="
               text-align: center;
               padding: 32px 16px;
-              color: rgba(255,255,255,0.35);
+              color: var(--text-muted);
               font-size: 13px;
             ">
               <div style="font-size: 32px; margin-bottom: 8px; opacity: 0.5;">💤</div>
@@ -294,7 +297,7 @@ function renderTokenStatsSidebar(stats: TokenStats, activeNodes: any[], lang: La
           ` : html`
             ${activeNodes.map((node: any) => html`
               <div style="
-                background: rgba(255,255,255,0.04);
+                background: var(--card-transparent);
                 border-radius: 12px;
                 padding: 12px;
                 margin-bottom: 8px;
@@ -302,13 +305,13 @@ function renderTokenStatsSidebar(stats: TokenStats, activeNodes: any[], lang: La
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
                   <div style="
                     width: 8px; height: 8px;
-                    background: #34D399;
+                    background: var(--ok, #22c55e);
                     border-radius: 50%;
                     animation: pulse 2s infinite;
                   "></div>
-                  <span style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9);">${node.label || 'Agent'}</span>
+                  <span style="font-size: 13px; font-weight: 600; color: var(--text);">${node.label || 'Agent'}</span>
                 </div>
-                <div style="font-size: 11px; color: rgba(255,255,255,0.5); padding-left: 16px;">
+                <div style="font-size: 11px; color: var(--text-muted); padding-left: 16px;">
                   ${node.currentAction || node.status}
                 </div>
               </div>

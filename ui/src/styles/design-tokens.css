@@ -1,0 +1,1023 @@
+/* ═══════════════════════════════════════════════════════════════
+   AeonSage Design Tokens — Polar-Derived Dual Theme System
+   ─────────────────────────────────────────────────────────────
+   Free: Clean, light, modern (Polar light inspiration)
+   Pro:  Polar dark, 233° blue-gray, soft shadows
+
+   Loaded AFTER base.css to override default tokens.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Font: Inter (Geist-compatible, swap to Geist when bundled) ── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* ═══════════════════════════════════════════════════════════════
+   DARK THEME — Polar Dark (233° Blue-Gray)
+   Applied to :root (default) and :root[data-theme="dark"]
+   ═══════════════════════════════════════════════════════════════ */
+:root,
+:root[data-theme="dark"],
+:root[data-theme="pro"] {
+  /* Gray Scale — 233° Blue-Gray */
+  --gray-50: hsl(233deg, 5%, 98%);
+  --gray-100: hsl(233deg, 5%, 93%);
+  --gray-200: hsl(233deg, 5%, 85%);
+  --gray-300: hsl(233deg, 5%, 70%);
+  --gray-400: hsl(233deg, 5%, 55%);
+  --gray-500: hsl(233deg, 5%, 45%);
+  --gray-600: hsl(233deg, 5%, 35%);
+  --gray-700: hsl(233deg, 5%, 25%);
+  --gray-800: hsl(233deg, 5%, 18%);
+  --gray-900: hsl(233deg, 5%, 12%);
+  --gray-950: hsl(233deg, 5%, 7%);
+
+  /* Foundation — 233° Blue-Gray */
+  --bg: hsl(233deg, 5%, 9.5%);
+  --bg-accent: hsl(233deg, 5%, 7%);
+  --bg-subtle: hsl(233deg, 5%, 11%);
+  --bg-elevated: hsl(233deg, 5%, 13%);
+  --bg-hover: hsl(233deg, 5%, 14%);
+  --bg-muted: hsl(233deg, 5%, 11%);
+  --bg-sidebar: hsla(233deg, 6%, 7%, 0.85);
+  --bg-topbar: hsla(233deg, 6%, 8%, 0.85);
+  --bg-content: hsl(233deg, 5%, 9.5%);
+
+  /* Cards */
+  --card: hsl(233deg, 5%, 11%);
+  --card-alt: hsl(233deg, 5%, 13%);
+  --card-solid: hsl(233deg, 5%, 10%);
+  --card-transparent: hsla(233deg, 5%, 100%, 0.03);
+  --card-highlight: hsla(233deg, 5%, 100%, 0.05);
+  --card-foreground: hsl(233deg, 5%, 92%);
+  --popover: hsl(233deg, 5%, 11%);
+  --popover-foreground: hsl(233deg, 5%, 92%);
+
+  /* Panels */
+  --panel: hsl(233deg, 5%, 8%);
+  --panel-light: hsl(233deg, 5%, 11%);
+  --panel-strong: hsl(233deg, 5%, 7%);
+  --panel-hover: hsl(233deg, 5%, 13%);
+  --chrome: hsla(233deg, 6%, 8%, 0.82);
+  --chrome-strong: hsla(233deg, 6%, 8%, 0.92);
+
+  /* Text — Soft White */
+  --text: hsl(233deg, 5%, 88%);
+  --text-strong: hsl(233deg, 5%, 96%);
+  --text-muted: hsl(233deg, 5%, 50%);
+  --chat-text: hsl(233deg, 5%, 90%);
+  --muted: hsl(233deg, 5%, 48%);
+  --muted-strong: hsl(233deg, 5%, 62%);
+  --muted-foreground: hsl(233deg, 5%, 42%);
+
+  /* Borders — Subtle Blue-Gray */
+  --border: hsl(233deg, 5%, 16%);
+  --border-subtle: hsl(233deg, 5%, 13%);
+  --border-strong: hsl(233deg, 5%, 21%);
+  --border-active: hsl(233deg, 5%, 28%);
+  --border-hover: hsl(233deg, 5%, 24%);
+  --input: hsl(233deg, 5%, 12%);
+  --ring: hsl(233deg, 5%, 32%);
+
+  /* Accent — Indigo (matches Logo ">" chevron) */
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-muted: #4f46e5;
+  --accent-subtle: rgba(99, 102, 241, 0.12);
+  --accent-glow: rgba(99, 102, 241, 0.18);
+
+  /* Secondary Accent — Blue */
+  --accent-secondary: #3b82f6;
+  --accent-secondary-subtle: rgba(59, 130, 246, 0.12);
+
+  /* Status Accents */
+  --accent-blue: #3b82f6;
+  --accent-teal: #10b981;
+  --accent-purple: #a855f7;
+  --accent-yellow: #f59e0b;
+  --accent-green: #22c55e;
+  --accent-pink: #ec4899;
+
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: hsl(233deg, 5%, 16%);
+  --secondary-foreground: hsl(233deg, 5%, 88%);
+  --accent-2: #818cf8;
+  --accent-2-muted: rgba(129, 140, 248, 0.75);
+  --accent-2-subtle: rgba(129, 140, 248, 0.12);
+
+  /* Status Colors */
+  --ok: #22c55e;
+  --ok-muted: rgba(34, 197, 94, 0.75);
+  --ok-subtle: rgba(34, 197, 94, 0.10);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --warn: #f59e0b;
+  --warn-muted: rgba(245, 158, 11, 0.75);
+  --warn-subtle: rgba(245, 158, 11, 0.10);
+  --danger: #ef4444;
+  --danger-muted: rgba(239, 68, 68, 0.75);
+  --danger-subtle: rgba(239, 68, 68, 0.10);
+  --info: #38bdf8;
+
+  /* Focus */
+  --focus: rgba(99, 102, 241, 0.35);
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+  --focus-glow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), 0 0 24px var(--accent-glow);
+
+  --grid-line: hsla(233deg, 5%, 100%, 0.03);
+
+  /* Typography — Clean Sans (Geist-compatible) */
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
+
+  /* Shadows — Polar Signature: Soft, layered, diffuse */
+  --shadow-sm: 0 0 8px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 2px rgba(0, 0, 0, 0.20);
+  --shadow-lg: 0 0 30px rgba(0, 0, 0, 0.20), 0 0 4px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 0 50px rgba(0, 0, 0, 0.25), 0 0 8px rgba(0, 0, 0, 0.30);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+
+  /* Radii — Polar: Larger, softer */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+  --radius: 14px;
+
+  /* Glass — Rich blur for dark */
+  --glass-blur: blur(12px) saturate(130%);
+  --glass-backdrop: blur(8px) saturate(120%);
+
+  color-scheme: dark;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT THEME — Polar Light (Clean Slate)
+   Applied to :root[data-theme="light"] and :root[data-theme="free"]
+   ═══════════════════════════════════════════════════════════════ */
+:root[data-theme="light"],
+:root[data-theme="free"] {
+  /* Gray Scale — Slate */
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+  --gray-950: #020617;
+
+  /* Foundation — Slate White */
+  --bg: #f8fafc;
+  --bg-accent: #f1f5f9;
+  --bg-subtle: #e2e8f0;
+  --bg-elevated: #ffffff;
+  --bg-hover: #f1f5f9;
+  --bg-muted: #f8fafc;
+  --bg-sidebar: rgba(241, 245, 249, 0.85);
+  --bg-topbar: rgba(255, 255, 255, 0.85);
+  --bg-content: #f8fafc;
+
+  /* Cards — White */
+  --card: #ffffff;
+  --card-alt: #f8fafc;
+  --card-solid: #ffffff;
+  --card-transparent: rgba(0, 0, 0, 0.02);
+  --card-highlight: rgba(0, 0, 0, 0.04);
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  /* Panels */
+  --panel: #ffffff;
+  --panel-light: #ffffff;
+  --panel-strong: #f8fafc;
+  --panel-hover: #f1f5f9;
+  --chrome: rgba(255, 255, 255, 0.97);
+  --chrome-strong: rgba(255, 255, 255, 0.99);
+
+  /* Text — Dark Slate */
+  --text: #0f172a;
+  --text-strong: #020617;
+  --text-muted: #64748b;
+  --chat-text: #1e293b;
+  --muted: #64748b;
+  --muted-strong: #475569;
+  --muted-foreground: #94a3b8;
+
+  /* Borders — Slate */
+  --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --border-strong: #cbd5e1;
+  --border-active: #94a3b8;
+  --border-hover: #cbd5e1;
+  --input: #f1f5f9;
+  --ring: #cbd5e1;
+
+  /* Accent — Indigo (matches Logo ">" chevron) */
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-muted: #4338ca;
+  --accent-subtle: rgba(99, 102, 241, 0.08);
+  --accent-glow: rgba(99, 102, 241, 0.12);
+
+  /* Secondary Accent — Blue */
+  --accent-secondary: #3b82f6;
+  --accent-secondary-subtle: rgba(59, 130, 246, 0.08);
+
+  /* Status Accents */
+  --accent-blue: #3b82f6;
+  --accent-teal: #10b981;
+  --accent-purple: #a855f7;
+  --accent-yellow: #f59e0b;
+  --accent-green: #22c55e;
+  --accent-pink: #ec4899;
+
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --accent-2: #818cf8;
+  --accent-2-muted: rgba(129, 140, 248, 0.75);
+  --accent-2-subtle: rgba(129, 140, 248, 0.08);
+
+  /* Status Colors */
+  --ok: #22c55e;
+  --ok-muted: rgba(34, 197, 94, 0.75);
+  --ok-subtle: rgba(34, 197, 94, 0.08);
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --warn: #f59e0b;
+  --warn-muted: rgba(245, 158, 11, 0.75);
+  --warn-subtle: rgba(245, 158, 11, 0.08);
+  --danger: #ef4444;
+  --danger-muted: rgba(239, 68, 68, 0.75);
+  --danger-subtle: rgba(239, 68, 68, 0.08);
+  --info: #0ea5e9;
+
+  /* Focus */
+  --focus: rgba(99, 102, 241, 0.25);
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+  --focus-glow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), 0 0 12px var(--accent-glow);
+
+  --grid-line: rgba(0, 0, 0, 0.04);
+
+  /* Typography — Clean Sans (Geist-compatible) */
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif;
+
+  /* Shadows — Polar Signature: Subtle, diffuse */
+  --shadow-sm: 0 0 8px rgba(0, 0, 0, 0.03), 0 0 1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 0 15px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 0 30px rgba(0, 0, 0, 0.06), 0 0 4px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 0 50px rgba(0, 0, 0, 0.08), 0 0 8px rgba(0, 0, 0, 0.10);
+  --shadow-glow: 0 0 16px var(--accent-glow);
+
+  /* Radii — Comfortable */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --radius: 12px;
+
+  /* Glass — Subtle for light */
+  --glass-blur: blur(8px) saturate(110%);
+  --glass-backdrop: blur(6px) saturate(105%);
+
+  color-scheme: light;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   POLAR COMPREHENSIVE OVERRIDES
+   Loaded LAST — punches through ALL legacy !important rules.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Global Body & Typography ── */
+body {
+  font-family: var(--font-body) !important;
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* ── Topbar — Transparent frosted glass (OS style) ── */
+.topbar {
+  background: var(--chrome) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  height: var(--shell-topbar-height, 64px) !important;
+}
+
+/* Subtle accent glow line at bottom */
+.topbar::after {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      var(--accent-subtle) 30%,
+      var(--accent-subtle) 50%,
+      var(--accent-subtle) 70%,
+      transparent 100%) !important;
+  opacity: 0.6 !important;
+}
+
+/* ── Content Area — Use token bg, not hardcoded black ── */
+.content {
+  background: var(--bg) !important;
+}
+
+:root[data-theme="light"] .content,
+:root[data-theme="free"] .content {
+  background: var(--bg) !important;
+}
+
+/* ── Navigation Sidebar — Matte frosted (OS style) ── */
+.nav {
+  background: var(--chrome) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  border-right-color: var(--border-subtle) !important;
+}
+
+.nav-item:hover {
+  background: var(--bg-hover) !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--text) !important;
+}
+
+.nav-item.active .nav-item__icon {
+  color: var(--accent) !important;
+}
+
+.nav-item.active::after {
+  background: var(--accent) !important;
+  box-shadow: 0 0 8px var(--accent-subtle) !important;
+}
+
+/* ── Brand Title ── */
+.brand-title {
+  font-family: var(--font-display) !important;
+  font-style: normal !important;
+  transform: none !important;
+  letter-spacing: 0.06em !important;
+}
+
+:root[data-theme="light"] .brand-title,
+:root[data-theme="free"] .brand-title {
+  background: none !important;
+  -webkit-text-fill-color: var(--text) !important;
+  color: var(--text) !important;
+  font-weight: 700 !important;
+}
+
+:root[data-theme="dark"] .brand-title,
+:root[data-theme="pro"] .brand-title {
+  background: linear-gradient(135deg, #FFFFFF 0%, #C8C8D0 50%, #9898A0 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 700 !important;
+}
+
+/* ── Brand Sub ── */
+.brand-sub {
+  font-family: var(--font-body) !important;
+  color: var(--text-muted) !important;
+  letter-spacing: 0.12em !important;
+}
+
+/* ── Logo Tint ── */
+:root[data-theme="light"] .system-logo-tint,
+:root[data-theme="free"] .system-logo-tint {
+  filter: brightness(0) saturate(100%) !important;
+}
+
+/* Logo animated — remove green glow */
+.logo-animated {
+  filter: none !important;
+}
+
+/* ── Cards, Panels, Stats — Polar Clean ── */
+.card,
+.panel,
+.stat {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-sm) !important;
+  border-radius: var(--radius-md) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease !important;
+}
+
+.card:hover,
+.panel:hover,
+.stat:hover {
+  border-color: var(--border-strong) !important;
+  box-shadow: var(--shadow-md) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Light mode: no blur */
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .panel,
+:root[data-theme="light"] .stat,
+:root[data-theme="free"] .card,
+:root[data-theme="free"] .panel,
+:root[data-theme="free"] .stat {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ── Stat-card minimal ── */
+.stat-card {
+  border-bottom-color: var(--border) !important;
+}
+
+.stat-card:hover {
+  border-bottom-color: var(--border-strong) !important;
+}
+
+.stat-card .stat-value {
+  color: var(--accent) !important;
+}
+
+/* ── Status Items ── */
+.status-li.strength-item {
+  background: var(--card-transparent) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+/* ── Buttons — Polar Blue CTA ── */
+.btn,
+button.btn {
+  font-family: var(--font-body) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.btn-primary,
+.glass-button-primary {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #ffffff !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.btn-primary:hover,
+.glass-button-primary:hover {
+  background: var(--accent-hover) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* ── Inputs ── */
+input, select, textarea {
+  font-family: var(--font-body) !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+select,
+textarea {
+  background: var(--input) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--text) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-subtle) !important;
+  outline: none !important;
+}
+
+/* ── Page Titles ── */
+.page-title {
+  font-family: var(--font-display) !important;
+  color: var(--text-strong) !important;
+}
+
+:root[data-theme="light"] .page-title,
+:root[data-theme="free"] .page-title {
+  color: var(--text-strong) !important;
+}
+
+.page-sub {
+  color: var(--text-muted) !important;
+}
+
+/* ── Pill / Badge ── */
+.pill {
+  border-color: var(--border) !important;
+  background: var(--bg-subtle) !important;
+}
+
+/* ── Links ── */
+a {
+  color: var(--accent) !important;
+}
+
+a:hover {
+  color: var(--accent-hover) !important;
+}
+
+/* ── Footer ── */
+.app-footer {
+  background: var(--bg) !important;
+  border-top-color: var(--border-subtle) !important;
+  color: var(--text-muted) !important;
+}
+
+.app-footer a {
+  color: var(--text-muted) !important;
+}
+
+.app-footer a:hover {
+  color: var(--accent) !important;
+}
+
+/* ── Dropdown / Popover ── */
+.dropdown-menu {
+  background: var(--popover) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.dropdown-item:hover {
+  background: var(--bg-hover) !important;
+}
+
+/* ── Glass card override (aeonsage-os duplicate) ── */
+.glass-card {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.glass-card:hover {
+  transform: translateY(-1px) !important;
+  border-color: var(--border-strong) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* ── Tooltip ── */
+.tooltip {
+  background: var(--popover) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Context menu ── */
+.context-menu {
+  background: var(--popover) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.context-menu__item {
+  color: var(--text) !important;
+}
+
+.context-menu__item:hover {
+  background: var(--bg-hover) !important;
+}
+
+.context-menu__separator {
+  background: var(--border-subtle) !important;
+}
+
+/* ── Data panel (aeonsage-os) ── */
+.data-panel {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+}
+
+.data-panel__title {
+  color: var(--text-strong) !important;
+}
+
+/* ── Sidebar drawer ── */
+.sidebar-drawer {
+  background: var(--bg-sidebar) !important;
+  border-right-color: var(--border-subtle) !important;
+}
+
+.sidebar-item {
+  color: var(--text-muted) !important;
+}
+
+.sidebar-item:hover {
+  background: var(--bg-hover) !important;
+  color: var(--text) !important;
+}
+
+.sidebar-item.active {
+  background: var(--accent-subtle) !important;
+  color: var(--accent) !important;
+}
+
+/* ── Dock ── */
+.dock {
+  background: var(--panel) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.dock-item:hover {
+  background: var(--bg-hover) !important;
+  border-color: var(--border) !important;
+}
+
+/* ── Scrollbar ── */
+:root[data-theme="light"] ::-webkit-scrollbar-thumb,
+:root[data-theme="free"] ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+:root[data-theme="light"] ::-webkit-scrollbar-thumb:hover,
+:root[data-theme="free"] ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb,
+:root[data-theme="pro"] ::-webkit-scrollbar-thumb {
+  background: hsl(233deg, 5%, 20%);
+}
+
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover,
+:root[data-theme="pro"] ::-webkit-scrollbar-thumb:hover {
+  background: hsl(233deg, 5%, 28%);
+}
+
+/* ── Focus states — Polar blue ── */
+:focus-visible {
+  box-shadow: var(--focus-ring) !important;
+}
+
+/* ── Theme Toggle ── */
+.theme-toggle {
+  border-color: var(--border) !important;
+  background: var(--bg-subtle) !important;
+}
+
+/* ── Topbar Status Pill ── */
+.topbar-status .pill {
+  background: var(--bg-subtle) !important;
+  border-color: var(--border) !important;
+}
+
+/* ── Nav label refinement ── */
+.nav-label {
+  color: var(--text-muted) !important;
+  font-family: var(--font-body) !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* ── Light-specific content overrides ── */
+:root[data-theme="light"] .topbar,
+:root[data-theme="free"] .topbar {
+  background: var(--chrome) !important;
+  backdrop-filter: blur(20px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+:root[data-theme="light"] .nav,
+:root[data-theme="free"] .nav {
+  background: var(--chrome) !important;
+  backdrop-filter: blur(20px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+}
+
+/* ── Switch / Toggle ── */
+input:checked + .slider {
+  background-color: var(--accent-subtle) !important;
+  border-color: var(--accent) !important;
+}
+
+input:checked + .slider::before {
+  background-color: var(--accent) !important;
+}
+
+/* ── Config Page ── */
+.config-layout {
+  background: var(--bg) !important;
+  border-color: var(--border) !important;
+}
+
+.config-sidebar {
+  background: var(--bg-sidebar) !important;
+  border-right-color: var(--border) !important;
+}
+
+.config-sidebar__title {
+  color: var(--text-strong) !important;
+}
+
+.config-sidebar__header {
+  border-bottom-color: var(--border) !important;
+}
+
+.config-sidebar__footer {
+  border-top-color: var(--border) !important;
+}
+
+.config-search {
+  border-bottom-color: var(--border-subtle) !important;
+}
+
+/* ── Chat — clean backgrounds ── */
+.chat-thread {
+  background: transparent !important;
+}
+
+/* ── SVG icon overrides ── */
+.system-logo-tint {
+  filter: none !important;
+}
+
+:root[data-theme="dark"] .system-logo-tint,
+:root[data-theme="pro"] .system-logo-tint {
+  filter: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATUS GLOW STATES — Energy-aware semantic accents
+   ═══════════════════════════════════════════════════════════════ */
+.status-ok,
+.statusDot.ok {
+  color: var(--ok) !important;
+}
+
+.status-warn {
+  color: var(--warn) !important;
+}
+
+.status-danger {
+  color: var(--danger) !important;
+}
+
+.status-info {
+  color: var(--info) !important;
+}
+
+/* ── Config Page — Full token adoption ── */
+.config-layout {
+  background: var(--bg) !important;
+}
+
+.config-sidebar {
+  background: var(--bg-sidebar) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+}
+
+.config-sidebar__title {
+  color: var(--text-strong) !important;
+}
+
+.config-sidebar__header {
+  border-bottom-color: var(--border) !important;
+}
+
+.config-sidebar__footer {
+  border-top-color: var(--border) !important;
+}
+
+.config-search__icon {
+  color: var(--text-muted) !important;
+}
+
+.config-search__input {
+  color: var(--text) !important;
+  background: var(--input) !important;
+}
+
+.config-search__input::placeholder {
+  color: var(--muted) !important;
+}
+
+.config-nav__item {
+  color: var(--text-muted) !important;
+}
+
+.config-nav__item:hover {
+  color: var(--text) !important;
+  background: var(--bg-hover) !important;
+}
+
+.config-nav__item.active {
+  color: var(--accent) !important;
+  background: var(--accent-subtle) !important;
+}
+
+.config-mode-toggle {
+  background: var(--bg-subtle) !important;
+  border-color: var(--border) !important;
+}
+
+.config-mode-toggle__btn.active {
+  color: var(--primary-foreground) !important;
+  background: var(--accent) !important;
+}
+
+.config-changes-badge {
+  border-color: var(--danger-subtle) !important;
+}
+
+.config-diff {
+  border-color: var(--danger-subtle) !important;
+}
+
+/* Config form inputs — light theme */
+:root[data-theme="light"] .config-layout,
+:root[data-theme="free"] .config-layout {
+  background: var(--bg) !important;
+}
+
+:root[data-theme="light"] .config-sidebar,
+:root[data-theme="free"] .config-sidebar {
+  background: var(--bg-sidebar) !important;
+}
+
+:root[data-theme="light"] .config-sidebar__title,
+:root[data-theme="free"] .config-sidebar__title {
+  color: var(--text-strong) !important;
+}
+
+:root[data-theme="light"] .config-nav__item:hover,
+:root[data-theme="free"] .config-nav__item:hover {
+  color: var(--text) !important;
+}
+
+:root[data-theme="light"] .config-nav__item.active,
+:root[data-theme="free"] .config-nav__item.active {
+  color: var(--accent) !important;
+}
+
+:root[data-theme="light"] .cfg-input,
+:root[data-theme="light"] .cfg-textarea,
+:root[data-theme="light"] .cfg-number,
+:root[data-theme="light"] .cfg-select,
+:root[data-theme="light"] .cfg-toggle-row,
+:root[data-theme="light"] .cfg-object,
+:root[data-theme="light"] .cfg-array__count,
+:root[data-theme="light"] .config-diff__item,
+:root[data-theme="light"] .config-section-card,
+:root[data-theme="light"] .config-mode-toggle,
+:root[data-theme="free"] .cfg-input,
+:root[data-theme="free"] .cfg-textarea,
+:root[data-theme="free"] .cfg-number,
+:root[data-theme="free"] .cfg-select,
+:root[data-theme="free"] .cfg-toggle-row,
+:root[data-theme="free"] .cfg-object,
+:root[data-theme="free"] .cfg-array__count,
+:root[data-theme="free"] .config-diff__item,
+:root[data-theme="free"] .config-section-card,
+:root[data-theme="free"] .config-mode-toggle {
+  background: var(--card) !important;
+}
+
+/* Config toggle — uses accent when checked */
+.cfg-toggle input:checked + .cfg-toggle__track {
+  border-color: var(--accent) !important;
+  background: var(--accent-subtle) !important;
+}
+
+.cfg-toggle input:checked + .cfg-toggle__track::before {
+  background: var(--accent) !important;
+}
+
+/* Config pills */
+.pill--ok {
+  border-color: var(--ok-muted) !important;
+}
+
+.pill--danger {
+  border-color: var(--danger-muted) !important;
+}
+
+/* ── Glass overrides — replace old orange glow with indigo ── */
+.glass-button-primary {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+.glass-button-primary:hover {
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* ── Glass variables — patch old rgba to token-aware ── */
+.glass-card {
+  background: var(--card) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.glass-card:hover {
+  background: var(--card-alt) !important;
+  border-color: var(--border-strong) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* ── Dashboard background spheres — indigo accent, not green/orange ── */
+.shape-sphere-accent {
+  background: radial-gradient(circle, var(--accent-subtle) 0%, transparent 70%) !important;
+}
+
+.shape-sphere-secondary {
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%) !important;
+}
+
+:root[data-theme="light"] .shape-sphere-accent,
+:root[data-theme="free"] .shape-sphere-accent {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%) !important;
+}
+
+:root[data-theme="light"] .shape-sphere-secondary,
+:root[data-theme="free"] .shape-sphere-secondary {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%) !important;
+}
+
+/* ── Theme toggle — token-driven ── */
+.theme-toggle__track {
+  background: var(--panel) !important;
+  border-color: var(--border) !important;
+}
+
+.language-toggle__track {
+  background: var(--panel) !important;
+  border-color: var(--border) !important;
+}
+
+/* ── Components — subtle stat/status backgrounds ── */
+.stat {
+  background: var(--card-transparent) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+.stat:hover {
+  background: var(--card-highlight) !important;
+}
+
+.stat-card {
+  border-bottom-color: var(--border-subtle) !important;
+}
+
+.stat-card:hover {
+  border-bottom-color: var(--border-strong) !important;
+}
+
+.status-li.strength-item,
+.status-list div {
+  background: var(--card-transparent) !important;
+  border-color: var(--border-subtle) !important;
+}
+
+.status-list div:hover {
+  background: var(--card-highlight) !important;
+}
+
+/* ── OS components — token-driven dark mode ── */
+.sidebar-item {
+  color: var(--text-muted) !important;
+}
+
+.sidebar-item:hover {
+  color: var(--text) !important;
+}
+
+.data-panel__title {
+  color: var(--text-strong) !important;
+}
+
+.data-panel__subtitle {
+  color: var(--text-muted) !important;
+}
+
+.tooltip {
+  color: var(--text) !important;
+}
+
+.context-menu__item {
+  color: var(--text) !important;
+}
+
+/* ── Layout — remove old orange gradient, replace footer green ── */
+.topbar::after {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--accent-subtle) 30%,
+    var(--accent-subtle) 70%,
+    transparent 100%) !important;
+}
+
+.app-footer a:hover {
+  color: var(--accent) !important;
+}
+
+/* ── Content gradient — clean token bg ── */
+.content {
+  background: var(--bg) !important;
+}

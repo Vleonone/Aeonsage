@@ -3,18 +3,15 @@ import { type SkillsCatalogProps, renderSkillsCatalog } from "./skills.catalog.j
 import { type SessionsProps, renderSessions } from "./sessions.js";
 import { type NodesProps, renderNodes } from "./nodes.js";
 import { renderMarketplace, type MarketplaceProps } from "./marketplace.js";
-import { renderWorkflowCanvas, type WorkflowCanvasProps } from "./workflow-canvas.js";
 import { t, getCurrentLanguage } from "../i18n.js";
-import { createWorkflowState } from "../controllers/workflow.js";
 
-export type IntelligenceSubTab = "skills" | "sessions" | "nodes" | "market" | "workflow";
+export type IntelligenceSubTab = "skills" | "sessions" | "nodes" | "market";
 
 export type IntelligenceProps = {
   skills: SkillsCatalogProps;
   sessions: SessionsProps;
   nodes: NodesProps;
   market?: MarketplaceProps;
-  workflow?: WorkflowCanvasProps;
   subTab: IntelligenceSubTab;
   onSubTabChange: (tab: IntelligenceSubTab) => void;
 };
@@ -39,19 +36,13 @@ export function renderIntelligence(props: IntelligenceProps) {
         >
           ${texts.nav.sessions}
         </button>
-        <button 
+        <button
           class="sub-nav-item ${props.subTab === 'nodes' ? 'active' : ''}"
           @click=${() => props.onSubTabChange('nodes')}
         >
           ${texts.nav.nodes}
         </button>
-        <button 
-          class="sub-nav-item ${props.subTab === 'workflow' ? 'active' : ''}"
-          @click=${() => props.onSubTabChange('workflow')}
-        >
-          ${texts.navExtra?.workflow || texts.nav?.workflow || 'Workflow'}
-        </button>
-        <button 
+        <button
           class="sub-nav-item ${props.subTab === 'market' ? 'active' : ''}"
           @click=${() => props.onSubTabChange('market')}
         >
@@ -63,12 +54,6 @@ export function renderIntelligence(props: IntelligenceProps) {
         ${props.subTab === 'skills' ? renderSkillsCatalog(props.skills) : ''}
         ${props.subTab === 'sessions' ? renderSessions(props.sessions) : ''}
         ${props.subTab === 'nodes' ? renderNodes(props.nodes) : ''}
-        ${props.subTab === 'workflow' ? renderWorkflowCanvas(props.workflow ?? {
-    state: createWorkflowState(),
-    onRefresh: () => { },
-    onSelectNode: () => { },
-    onStopNode: () => { }
-  }) : ''}
         ${props.subTab === 'market' && props.market ? renderMarketplace(props.market) : ''}
       </div>
     </div>

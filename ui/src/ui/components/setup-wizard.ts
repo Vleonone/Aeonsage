@@ -277,7 +277,7 @@ export class AeonSageSetupWizard extends LitElement {
           <span class="log-line">> [SYSTEM] Hardware Acceleration: ENABLED</span>
           <span class="log-line">> [NETWORK] Handshake latency: 12ms</span>
           <span class="log-line">> [KERNEL] ${texts.envCheck}</span>
-          <span class="log-line" style="color:#22c55e; margin-top:12px;">> INITIALIZATION_VECTOR: 0xAEON_READY</span>
+          <span class="log-line" style="color:var(--ok); margin-top:12px;">> INITIALIZATION_VECTOR: 0xAEON_READY</span>
         ` : nothing}
       </div>
     `;

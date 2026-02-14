@@ -5,7 +5,7 @@ import { html, type TemplateResult } from "lit";
 
 export const icons = {
   // Navigation icons
-  logo: html`<img src="/Aeon_logo.svg" alt="AeonSage Logo" class="logo-animated" style="height: 24px; width: auto;" />`,
+  logo: html`<img src="/aeonsage-logo02.svg" alt="AeonSage Logo" class="logo-animated" style="height: 24px; width: auto;" />`,
   messageSquare: html`<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
   barChart: html`<svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>`,
   link: html`<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,

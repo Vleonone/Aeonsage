@@ -1,4 +1,4 @@
-﻿/* ===========================================
+/* ===========================================
    Shell Layout
    =========================================== */
 
@@ -7,18 +7,16 @@
   --shell-gap: 16px;
   --shell-nav-width: 240px;
   --shell-nav-width-collapsed: 72px;
-  --shell-topbar-height: 88px;
-  /* Maximized for brand presence */
+  --shell-topbar-height: 56px;
   --shell-focus-duration: 200ms;
   --shell-focus-ease: var(--ease-out);
   height: 100vh;
   display: grid;
   grid-template-columns: var(--shell-nav-width) 1fr;
-  grid-template-rows: var(--shell-topbar-height) 1fr auto;
+  grid-template-rows: var(--shell-topbar-height) 1fr;
   grid-template-areas:
     "topbar topbar"
-    "nav content"
-    "footer footer";
+    "nav content";
   gap: 0;
   animation: dashboard-enter 0.25s var(--ease-out);
   transition: grid-template-columns var(--shell-focus-duration) var(--shell-focus-ease);
@@ -31,12 +29,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 12px 24px;
-  font-size: 12px;
+  gap: 8px;
+  padding: 8px 20px;
+  font-size: 11px;
   color: var(--muted);
   background: var(--bg);
   border-top: 1px solid var(--border-subtle);
+  letter-spacing: 0.02em;
 }
 
 .app-footer a {
@@ -46,7 +45,7 @@
 }
 
 .app-footer a:hover {
-  color: var(--accent, #00FF88);
+  color: var(--accent);
 }
 
 .footer-divider {
@@ -108,9 +107,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--space-xl);
-  padding: 0 28px;
-  height: var(--shell-topbar-height, 64px);
+  gap: var(--space-lg);
+  padding: 0 20px;
+  height: var(--shell-topbar-height, 56px);
 
   /* Clean matte black background - Lightweight blur */
   background: var(--bg-topbar, var(--bg));
@@ -119,7 +118,6 @@
   border-bottom: 1px solid var(--border-subtle);
 }
 
-/* 橙色渐变边框效果 (Netti Orange) */
 .topbar::after {
   content: '';
   position: absolute;
@@ -129,9 +127,8 @@
   height: 1px;
   background: linear-gradient(90deg,
       transparent 0%,
-      rgba(255, 107, 74, 0.1) 20%,
-      rgba(255, 107, 74, 0.3) 50%,
-      rgba(255, 107, 74, 0.1) 80%,
+      var(--accent-subtle) 30%,
+      var(--accent-subtle) 70%,
       transparent 100%);
   pointer-events: none;
 }
@@ -139,14 +136,12 @@
 .topbar-left {
   display: flex;
   align-items: center;
-  gap: 24px;
-  /* Robust spacing for maximized branding */
+  gap: 16px;
 }
 
 .topbar .nav-collapse-toggle {
-  width: 40px;
-  /* SENSEI: 5x spacing unit */
-  height: 40px;
+  width: 32px;
+  height: 32px;
   margin-bottom: 0;
 }
 
@@ -164,14 +159,12 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 24px;
-  /* Optimal gap for large logo and text */
+  gap: 10px;
 }
 
 .brand-logo {
-  width: var(--logo-size, 72px);
-  /* Truly maximized to match user request */
-  height: var(--logo-size, 72px);
+  width: var(--logo-size, 32px);
+  height: var(--logo-size, 32px);
   padding: 0;
   flex-shrink: 0;
   display: flex;
@@ -212,9 +205,8 @@
 .brand-title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(18px, 4vw, 24px);
-  /* Reduced size for institutional proportion */
-  letter-spacing: 0.15em;
+  font-size: clamp(14px, 3vw, 18px);
+  letter-spacing: 0.12em;
   font-style: italic;
   transform: skewX(-5deg);
   line-height: 1;
@@ -246,12 +238,11 @@
 }
 
 .topbar-status .pill {
-  padding: 4px 12px;
-  gap: 12px;
+  padding: 4px 10px;
+  gap: 8px;
   font-size: var(--text-sm);
   font-weight: 500;
-  height: 36px;
-  /* Slightly taller to match robust topbar */
+  height: 32px;
   background: transparent;
   border: 1px solid var(--border-subtle);
   box-sizing: border-box;
@@ -263,7 +254,7 @@
   display: flex;
   align-items: center;
   line-height: 1;
-  margin-top: 0px;
+  margin-top: 0;
   color: var(--text-strong);
   /* 确保状态文字清晰 */
   letter-spacing: 0.05em;
@@ -293,7 +284,6 @@
   pointer-events: none;
 }
 
-/* Animated Squid Logo - Toxic Slime Theme */
 .logo-animated {
   height: 36px;
   width: 36px;
@@ -302,12 +292,12 @@
   object-fit: contain;
   user-select: none;
   pointer-events: none;
-  filter: drop-shadow(0 0 4px rgba(57, 255, 20, 0.3));
+  filter: drop-shadow(0 0 4px var(--accent-glow));
   transition: filter 0.3s ease;
 }
 
 .logo-animated:hover {
-  filter: drop-shadow(0 0 4px rgba(57, 255, 20, 0.35));
+  filter: drop-shadow(0 0 6px var(--accent-glow));
 }
 
 /* Navigation Sidebar Footer Logo */
@@ -640,8 +630,8 @@
 
 .nav-item:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.06);
+  background: var(--bg-hover);
+  border-color: var(--border-subtle);
   text-decoration: none;
 }
 
@@ -689,7 +679,7 @@
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  background: linear-gradient(180deg, #000000 0%, #080808 100%);
+  background: var(--bg);
 }
 
 :root[data-theme="light"] .content {
@@ -716,7 +706,7 @@
 .shell--chat-focus .content-header {
   opacity: 0;
   transform: translateY(-8px);
-  max-height: 0px;
+  max-height: 0;
   padding: 0;
   pointer-events: none;
 }
@@ -833,7 +823,8 @@
     grid-template-areas:
       "topbar"
       "nav"
-      "content";
+      "content"
+  ;
   }
 
   .nav {
